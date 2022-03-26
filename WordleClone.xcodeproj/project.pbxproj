@@ -58,16 +58,40 @@
 		1D1CC9D827EE25D5007C55DD /* WordleClone */ = {
 			isa = PBXGroup;
 			children = (
+				1D1CC9F227EE2875007C55DD /* Model */,
 				1D1CC9D927EE25D5007C55DD /* AppDelegate.swift */,
 				1D1CC9DB27EE25D5007C55DD /* SceneDelegate.swift */,
-				1D1CC9DD27EE25D5007C55DD /* ViewController.swift */,
-				1D1CC9DF27EE25D5007C55DD /* Main.storyboard */,
+				1D1CC9F027EE2855007C55DD /* View */,
+				1D1CC9F127EE285D007C55DD /* Controller */,
 				1D1CC9E527EE25D6007C55DD /* Assets.xcassets */,
 				1D1CC9E727EE25D6007C55DD /* LaunchScreen.storyboard */,
 				1D1CC9EA27EE25D6007C55DD /* Info.plist */,
 				1D1CC9E227EE25D5007C55DD /* WordleClone.xcdatamodeld */,
 			);
 			path = WordleClone;
+			sourceTree = "<group>";
+		};
+		1D1CC9F027EE2855007C55DD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1D1CC9DF27EE25D5007C55DD /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1D1CC9F127EE285D007C55DD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1D1CC9DD27EE25D5007C55DD /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		1D1CC9F227EE2875007C55DD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
