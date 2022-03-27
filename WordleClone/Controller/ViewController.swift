@@ -9,7 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let testWord : [String] = ["P", "I", "D", "G", "E"]
+    let wordDatabase = ["which", "there", "their", "about", "would", "these", "other", "could", "money", "years", "place", "sound", "great", "every", "music"]
+    var testWord : [String] = ["", "", "", "", ""]
     var guessNum = 1
     var currentGuessTextFieldCollection : [UITextField] = []
     var userGuess : [String] = ["", "", "", "", ""]
@@ -32,6 +33,17 @@ class ViewController: UIViewController {
             self.guess5TextFields[i].delegate = self
             self.guess6TextFields[i].delegate = self
         }
+        
+        //Generates random number from word database to use for current test word
+        var testWordNum = Int.random(in: 0..<wordDatabase.count)
+        
+        //Converts test word string into array of single letters
+        let testWordString = wordDatabase[testWordNum]
+        for i in 0...4 {
+            testWord[i] = testWordString[i..<(i+1)].uppercased()
+        }
+        
+        print(testWord)
         
         currentGuessTextFieldCollection = guess1TextFields
         guess1TextFields[0].becomeFirstResponder()
@@ -144,5 +156,19 @@ extension ViewController: UITextFieldDelegate {
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         return updatedText.count <= 1
+    }
+}
+
+extension String {
+    subscript(_ range: CountableRange<Int>) -> String {
+        let start = index(startIndex, offsetBy: max(0, range.lowerBound))
+        let end = index(start, offsetBy: min(self.count - range.lowerBound,
+                                             range.upperBound - range.lowerBound))
+        return String(self[start..<end])
+    }
+
+    subscript(_ range: CountablePartialRangeFrom<Int>) -> String {
+        let start = index(startIndex, offsetBy: max(0, range.lowerBound))
+         return String(self[start...])
     }
 }

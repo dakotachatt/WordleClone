@@ -66,7 +66,6 @@
 				1D1CC9E527EE25D6007C55DD /* Assets.xcassets */,
 				1D1CC9E727EE25D6007C55DD /* LaunchScreen.storyboard */,
 				1D1CC9EA27EE25D6007C55DD /* Info.plist */,
-				1D1CC9E227EE25D5007C55DD /* WordleClone.xcdatamodeld */,
 			);
 			path = WordleClone;
 			sourceTree = "<group>";
@@ -90,6 +89,7 @@
 		1D1CC9F227EE2875007C55DD /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1D1CC9E227EE25D5007C55DD /* WordleClone.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
