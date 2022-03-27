@@ -30,6 +30,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="Vme-QN-8fz"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="zE8-6r-cjg">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="50"/>
@@ -39,6 +42,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="sUf-VO-sCZ"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" tag="2" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZVp-zL-DMB">
                                                 <rect key="frame" x="120" y="0.0" width="50" height="50"/>
@@ -48,6 +54,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="wH2-Hu-E2u"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" tag="3" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="sZU-5a-2V9">
                                                 <rect key="frame" x="180" y="0.0" width="50" height="50"/>
@@ -57,6 +66,9 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="hN0-sV-Rgb"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" tag="4" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="qDa-dU-vDl">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="50"/>
@@ -66,156 +78,234 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="xEb-8D-XGb"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sK4-ns-XiP" userLabel="guess2">
                                         <rect key="frame" x="0.0" y="58" width="290" height="57.666666666666657"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-bu-aA7">
+                                            <textField opaque="NO" tag="5" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-bu-aA7">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="y2N-ZU-A4s"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="4He-Mr-YBX">
+                                            <textField opaque="NO" tag="6" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="4He-Mr-YBX">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="S6E-EU-cdl"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="hzv-Sc-Xjy">
+                                            <textField opaque="NO" tag="7" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="hzv-Sc-Xjy">
                                                 <rect key="frame" x="120" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="KnR-CC-V2X"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="3" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="II4-bG-4SX">
+                                            <textField opaque="NO" tag="8" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="II4-bG-4SX">
                                                 <rect key="frame" x="180" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="px0-OK-svK"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="4" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="R4s-h2-eAm">
+                                            <textField opaque="NO" tag="9" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="R4s-h2-eAm">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="hsV-4M-azg"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZBK-m0-g68" userLabel="guess3">
                                         <rect key="frame" x="0.0" y="123.66666666666667" width="290" height="57.666666666666671"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="eMk-t8-1ov">
+                                            <textField opaque="NO" tag="10" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="eMk-t8-1ov">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="VsS-Ya-x2p"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="qNW-ow-j5v">
+                                            <textField opaque="NO" tag="11" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="qNW-ow-j5v">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="FQk-cA-bQU"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="MPk-Nw-hx7">
+                                            <textField opaque="NO" tag="12" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="MPk-Nw-hx7">
                                                 <rect key="frame" x="120" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="kDu-Ad-fjM"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="3" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="0fM-LM-ROO">
+                                            <textField opaque="NO" tag="13" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="0fM-LM-ROO">
                                                 <rect key="frame" x="180" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="HEF-Rz-wgZ"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="4" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="kPM-d7-32J">
+                                            <textField opaque="NO" tag="14" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="kPM-d7-32J">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="6WK-kz-x8u"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="s6c-j1-Lh5" userLabel="guess4">
                                         <rect key="frame" x="0.0" y="189.33333333333331" width="290" height="57.666666666666657"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="qzQ-Zx-EEb">
+                                            <textField opaque="NO" tag="15" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="qzQ-Zx-EEb">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="hgt-RK-piU"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="3jc-hr-cbt">
+                                            <textField opaque="NO" tag="16" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="3jc-hr-cbt">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="Rdx-8Q-iyx"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="DBe-cU-ZMK">
+                                            <textField opaque="NO" tag="17" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="DBe-cU-ZMK">
                                                 <rect key="frame" x="120" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="xOA-46-itl"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="3" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="LI9-R6-3sx">
+                                            <textField opaque="NO" tag="18" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="LI9-R6-3sx">
                                                 <rect key="frame" x="180" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="gfL-WO-Ijl"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="4" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="hqk-0b-NeD">
+                                            <textField opaque="NO" tag="19" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="hqk-0b-NeD">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="vV6-iE-9es"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="3Gd-ho-CKs" userLabel="guess5">
                                         <rect key="frame" x="0.0" y="254.99999999999997" width="290" height="57.666666666666657"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="nSU-Re-9Pm">
+                                            <textField opaque="NO" tag="20" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="nSU-Re-9Pm">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="NPA-hN-yte"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="WbC-s4-bEa">
+                                            <textField opaque="NO" tag="21" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="WbC-s4-bEa">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="rfP-aT-MhW"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Jnd-jF-dUh">
+                                            <textField opaque="NO" tag="22" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Jnd-jF-dUh">
                                                 <rect key="frame" x="120" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="QuF-hr-JuT"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="3" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="anx-iI-Wpg">
+                                            <textField opaque="NO" tag="23" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="anx-iI-Wpg">
                                                 <rect key="frame" x="180" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="CCd-JB-dIz"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="4" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="AMU-Wd-mNd">
+                                            <textField opaque="NO" tag="24" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="AMU-Wd-mNd">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="aRW-b1-chb"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1At-xC-Cps" userLabel="guess6">
                                         <rect key="frame" x="0.0" y="320.66666666666669" width="290" height="57.666666666666686"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="acr-84-AQJ">
+                                            <textField opaque="NO" tag="25" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="acr-84-AQJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="tan-Ye-TXO"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="fTC-i6-ti7">
+                                            <textField opaque="NO" tag="26" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="fTC-i6-ti7">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="H60-kl-EW1"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="9Ce-O8-TM5">
+                                            <textField opaque="NO" tag="27" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="9Ce-O8-TM5">
                                                 <rect key="frame" x="120" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="4V5-IV-ECu"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="3" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="iDZ-Py-T6K">
+                                            <textField opaque="NO" tag="28" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="iDZ-Py-T6K">
                                                 <rect key="frame" x="180" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="fdJ-fJ-0XZ"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" tag="4" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="QRc-Je-N59">
+                                            <textField opaque="NO" tag="29" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="QRc-Je-N59">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="57.666666666666664"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
+                                                <connections>
+                                                    <action selector="letterChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="vSK-pT-qA1"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -240,11 +330,6 @@
                         <outletCollection property="guess2TextFields" destination="hzv-Sc-Xjy" collectionClass="NSMutableArray" id="GrI-Tf-MCy"/>
                         <outletCollection property="guess2TextFields" destination="II4-bG-4SX" collectionClass="NSMutableArray" id="l69-Xw-lDg"/>
                         <outletCollection property="guess2TextFields" destination="R4s-h2-eAm" collectionClass="NSMutableArray" id="kWf-FY-COm"/>
-                        <outletCollection property="guess3TextFields" destination="MPk-Nw-hx7" collectionClass="NSMutableArray" id="KJG-GO-TTE"/>
-                        <outletCollection property="guess3TextFields" destination="eMk-t8-1ov" collectionClass="NSMutableArray" id="3PW-08-TKs"/>
-                        <outletCollection property="guess3TextFields" destination="qNW-ow-j5v" collectionClass="NSMutableArray" id="YGj-G8-kUf"/>
-                        <outletCollection property="guess3TextFields" destination="0fM-LM-ROO" collectionClass="NSMutableArray" id="YBL-Mp-kfE"/>
-                        <outletCollection property="guess3TextFields" destination="kPM-d7-32J" collectionClass="NSMutableArray" id="DxF-VO-VIo"/>
                         <outletCollection property="guess4TextFields" destination="qzQ-Zx-EEb" collectionClass="NSMutableArray" id="vPq-WI-eJf"/>
                         <outletCollection property="guess4TextFields" destination="3jc-hr-cbt" collectionClass="NSMutableArray" id="QDJ-Sc-gdA"/>
                         <outletCollection property="guess4TextFields" destination="DBe-cU-ZMK" collectionClass="NSMutableArray" id="YdD-Nk-JhC"/>
@@ -260,6 +345,11 @@
                         <outletCollection property="guess6TextFields" destination="9Ce-O8-TM5" collectionClass="NSMutableArray" id="M1D-tD-eGD"/>
                         <outletCollection property="guess6TextFields" destination="iDZ-Py-T6K" collectionClass="NSMutableArray" id="xIs-By-UzA"/>
                         <outletCollection property="guess6TextFields" destination="QRc-Je-N59" collectionClass="NSMutableArray" id="dNV-Gw-rG8"/>
+                        <outletCollection property="guess3TextFields" destination="eMk-t8-1ov" collectionClass="NSMutableArray" id="1fS-hl-NCY"/>
+                        <outletCollection property="guess3TextFields" destination="qNW-ow-j5v" collectionClass="NSMutableArray" id="aZZ-Sp-pv5"/>
+                        <outletCollection property="guess3TextFields" destination="MPk-Nw-hx7" collectionClass="NSMutableArray" id="kMk-TD-2gF"/>
+                        <outletCollection property="guess3TextFields" destination="0fM-LM-ROO" collectionClass="NSMutableArray" id="Tqh-k9-N2i"/>
+                        <outletCollection property="guess3TextFields" destination="kPM-d7-32J" collectionClass="NSMutableArray" id="QOD-rF-6Df"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
