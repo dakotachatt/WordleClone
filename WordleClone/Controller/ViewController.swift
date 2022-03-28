@@ -6,14 +6,17 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     
-    let wordDatabase = ["which", "there", "their", "about", "would", "these", "other", "could", "money", "years", "place", "sound", "great", "every", "music"]
+    var testWordArray : [Word] = []
     var testWord : [String] = ["", "", "", "", ""]
     var guessNum = 1
     var currentGuessTextFieldCollection : [UITextField] = []
     var userGuess : [String] = ["", "", "", "", ""]
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     @IBOutlet var guess1TextFields: [UITextField]!
     @IBOutlet var guess2TextFields: [UITextField]!
@@ -34,13 +37,18 @@ class ViewController: UIViewController {
             self.guess6TextFields[i].delegate = self
         }
         
-        //Generates random number from word database to use for current test word
-        var testWordNum = Int.random(in: 0..<wordDatabase.count)
+        loadTestWords()
+        if(testWordArray.isEmpty) {
+            print("Initial Data Loaded")
+            loadWordData()
+        }
         
-        //Converts test word string into array of single letters
-        let testWordString = wordDatabase[testWordNum]
-        for i in 0...4 {
-            testWord[i] = testWordString[i..<(i+1)].uppercased()
+        if(testWordArray.count > 0) {
+            let randomNum = Int.random(in: 0..<testWordArray.count)
+            let testWordString = testWordArray[randomNum].wordText
+            for i in 0...4 {
+                testWord[i] = (testWordString?[i..<(i+1)].uppercased())!
+            }
         }
         
         print(testWord)
@@ -139,7 +147,51 @@ class ViewController: UIViewController {
         }
     }
     
+    func loadWordData() {
+        var words = [String]()
+        var wordNum = 1
+        
+        if let wordListURL = Bundle.main.url(forResource: "wordList", withExtension: "rtf") {
+            if let wordList = try? String(contentsOf: wordListURL) {
+                words = wordList.components(separatedBy: "\n")
+            }
+        }
+        
+        if(words.count > 0) {
+            for i in 0..<words.count {
+                let word = Word(context: self.context)
+                word.wordText = words[i]
+                word.guessed = false
+                word.wordNumID = Int32(wordNum)
+                wordNum += 1
+                print(word.wordText!)
+            }
+        }
+
+        saveWords()
+    }
+    
+    //MARK: - Model Manipulation Methods
+    
+    func saveWords() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context: \(error)")
+        }
+    }
+    
+    func loadTestWords(with request: NSFetchRequest<Word> = Word.fetchRequest()) {
+        do {
+            testWordArray = try context.fetch(request)
+            print("Array loaded")
+        } catch {
+            print("Error fetching category list: \(error)")
+        }
+    }
 }
+
+
 
 //MARK: - Keyboard dismissing methods
 extension ViewController: UITextFieldDelegate {
