@@ -13,8 +13,8 @@
 		1D1CC9E127EE25D5007C55DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1CC9DF27EE25D5007C55DD /* Main.storyboard */; };
 		1D1CC9E627EE25D6007C55DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D1CC9E527EE25D6007C55DD /* Assets.xcassets */; };
 		1D1CC9E927EE25D6007C55DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1CC9E727EE25D6007C55DD /* LaunchScreen.storyboard */; };
+		1D3D1E1627F38D8B004229BC /* wordList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1D3D1E1527F38D8B004229BC /* wordList.txt */; };
 		1D71AD4627F214A200006596 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D71AD4527F214A200006596 /* config.swift */; };
-		1D71AD4827F21BD900006596 /* wordList.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1D71AD4727F21BD900006596 /* wordList.rtf */; };
 		1D71AD4B27F21C1300006596 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D71AD4927F21C1300006596 /* DataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -27,8 +27,8 @@
 		1D1CC9E527EE25D6007C55DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D1CC9E827EE25D6007C55DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D1CC9EA27EE25D6007C55DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D3D1E1527F38D8B004229BC /* wordList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wordList.txt; sourceTree = SOURCE_ROOT; };
 		1D71AD4527F214A200006596 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
-		1D71AD4727F21BD900006596 /* wordList.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = wordList.rtf; sourceTree = "<group>"; };
 		1D71AD4A27F21C1300006596 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -46,7 +46,6 @@
 		1D1CC9CD27EE25D4007C55DD = {
 			isa = PBXGroup;
 			children = (
-				1D71AD4727F21BD900006596 /* wordList.rtf */,
 				1D71AD4527F214A200006596 /* config.swift */,
 				1D1CC9D827EE25D5007C55DD /* WordleClone */,
 				1D1CC9D727EE25D5007C55DD /* Products */,
@@ -88,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				1D1CC9DD27EE25D5007C55DD /* ViewController.swift */,
+				1D3D1E1527F38D8B004229BC /* wordList.txt */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -160,7 +160,7 @@
 			files = (
 				1D1CC9E927EE25D6007C55DD /* LaunchScreen.storyboard in Resources */,
 				1D1CC9E627EE25D6007C55DD /* Assets.xcassets in Resources */,
-				1D71AD4827F21BD900006596 /* wordList.rtf in Resources */,
+				1D3D1E1627F38D8B004229BC /* wordList.txt in Resources */,
 				1D1CC9E127EE25D5007C55DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

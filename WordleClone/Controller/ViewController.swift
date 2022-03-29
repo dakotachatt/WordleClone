@@ -9,15 +9,16 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController {
-    
-    var testWordArray : [Word] = []
-    var testWord : [String] = ["", "", "", "", ""]
-    var guessNum = 1
-    var currentGuessTextFieldCollection : [UITextField] = []
+
+    var testWord : Word? = nil
+    var testWordArray : [String] = ["", "", "", "", ""]
     var userGuess : [String] = ["", "", "", "", ""]
+    var currentGuessTextFieldCollection : [UITextField] = []
+    var guessNum = 1
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    //Text Field Outlets
     @IBOutlet var guess1TextFields: [UITextField]!
     @IBOutlet var guess2TextFields: [UITextField]!
     @IBOutlet var guess3TextFields: [UITextField]!
@@ -38,20 +39,12 @@ class ViewController: UIViewController {
         }
         
         loadTestWords()
-        if(testWordArray.isEmpty) {
-            print("Initial Data Loaded")
-            loadWordData()
-        }
+//        if(testWordArray.isEmpty) {
+//            print("Initial Data Loaded")
+//            loadWordData()
+//        }
         
-        if(testWordArray.count > 0) {
-            let randomNum = Int.random(in: 0..<testWordArray.count)
-            let testWordString = testWordArray[randomNum].wordText
-            for i in 0...4 {
-                testWord[i] = (testWordString?[i..<(i+1)].uppercased())!
-            }
-        }
-        
-        print(testWord)
+        print(testWordArray)
         
         currentGuessTextFieldCollection = guess1TextFields
         guess1TextFields[0].becomeFirstResponder()
@@ -61,12 +54,12 @@ class ViewController: UIViewController {
         for i in 0...4 {
            var presentInWord = false
             
-            if(userGuess[i] == testWord[i]) {
+            if(userGuess[i] == testWordArray[i]) {
                 currentGuessTextFieldCollection[i].backgroundColor = UIColor.green
             } else {
                 for j in 0...4 {
                     if(i != j) {
-                        if(userGuess[i] == testWord[j]) {
+                        if(userGuess[i] == testWordArray[j]) {
                             currentGuessTextFieldCollection[i].backgroundColor = UIColor.yellow
                             presentInWord = true
                         }
@@ -147,11 +140,13 @@ class ViewController: UIViewController {
         }
     }
     
+    //Loads the initial words list from wordList.txt into the CoreData Word entity
     func loadWordData() {
         var words = [String]()
+        //Used to assign each word an incremented word ID used to search randomly when test word is chosen
         var wordNum = 1
         
-        if let wordListURL = Bundle.main.url(forResource: "wordList", withExtension: "rtf") {
+        if let wordListURL = Bundle.main.url(forResource: "wordList", withExtension: "txt") {
             if let wordList = try? String(contentsOf: wordListURL) {
                 words = wordList.components(separatedBy: "\n")
             }
@@ -164,15 +159,14 @@ class ViewController: UIViewController {
                 word.guessed = false
                 word.wordNumID = Int32(wordNum)
                 wordNum += 1
-                print(word.wordText!)
             }
+            print("Word List Added")
         }
 
         saveWords()
     }
     
     //MARK: - Model Manipulation Methods
-    
     func saveWords() {
         do {
             try context.save()
@@ -181,10 +175,24 @@ class ViewController: UIViewController {
         }
     }
     
-    func loadTestWords(with request: NSFetchRequest<Word> = Word.fetchRequest()) {
+    func loadTestWords() {
+        let request : NSFetchRequest<Word> = Word.fetchRequest()
+
+        
         do {
-            testWordArray = try context.fetch(request)
-            print("Array loaded")
+            let wordListCount = try context.fetch(request).count
+            print("Array loaded, \(wordListCount)")
+            
+            let testWordNum = Int.random(in: 0..<wordListCount)
+            let predicate = NSPredicate(format: "wordNumID == %d", Int32(testWordNum))
+            request.predicate = predicate
+            
+            let testWordFetched = try context.fetch(request)
+            testWord = testWordFetched[0]
+            let testWordString = testWord?.wordText
+            for i in 0...4 {
+                testWordArray[i] = (testWordString?[i..<(i+1)].uppercased())!
+            }
         } catch {
             print("Error fetching category list: \(error)")
         }
@@ -193,12 +201,11 @@ class ViewController: UIViewController {
 
 
 
-//MARK: - Keyboard dismissing methods
+//MARK: - Keyboard return and string length methods
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         checkAnswer()
-        print(guessNum)
-        print(userGuess)
+
         return false
     }
     
