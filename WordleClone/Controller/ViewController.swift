@@ -16,6 +16,8 @@ class ViewController: UIViewController {
     var currentGuessTextFieldCollection : [UITextField] = []
     var guessNum = 1
     
+    let defaults = UserDefaults.standard
+
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     //Text Field Outlets
@@ -38,11 +40,15 @@ class ViewController: UIViewController {
             self.guess6TextFields[i].delegate = self
         }
         
-        loadTestWords()
-//        if(testWordArray.isEmpty) {
-//            print("Initial Data Loaded")
-//            loadWordData()
-//        }
+        //Determines if user has already initially run app on device, and if not, to populate the word list
+        let isWordListLoaded = defaults.bool(forKey: "WordListLoaded")
+        if(!isWordListLoaded) {
+            print("Initial Data Loaded")
+            loadWordData()
+            defaults.set(true, forKey: "WordListLoaded")
+        }
+        
+        loadTestWord()
         
         print(testWordArray)
         
@@ -140,7 +146,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //Loads the initial words list from wordList.txt into the CoreData Word entity
+    //Loads the initial words list from wordList.txt into the CoreData Word entity, used only on first run on device
     func loadWordData() {
         var words = [String]()
         //Used to assign each word an incremented word ID used to search randomly when test word is chosen
@@ -160,7 +166,7 @@ class ViewController: UIViewController {
                 word.wordNumID = Int32(wordNum)
                 wordNum += 1
             }
-            print("Word List Added")
+            print("Word List Successfully accessed")
         }
 
         saveWords()
@@ -175,13 +181,13 @@ class ViewController: UIViewController {
         }
     }
     
-    func loadTestWords() {
+    func loadTestWord() {
         let request : NSFetchRequest<Word> = Word.fetchRequest()
 
         
         do {
             let wordListCount = try context.fetch(request).count
-            print("Array loaded, \(wordListCount)")
+            print("Total words in database: \(wordListCount)")
             
             let testWordNum = Int.random(in: 0..<wordListCount)
             let predicate = NSPredicate(format: "wordNumID == %d", Int32(testWordNum))
@@ -218,6 +224,7 @@ extension ViewController: UITextFieldDelegate {
     }
 }
 
+//To be able to use subscripts on strings to get each letter to populate an array for future guess/test word comparison
 extension String {
     subscript(_ range: CountableRange<Int>) -> String {
         let start = index(startIndex, offsetBy: max(0, range.lowerBound))
