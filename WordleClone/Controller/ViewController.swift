@@ -50,8 +50,6 @@ class ViewController: UIViewController {
         
         loadTestWord()
         
-        print(testWordArray)
-        
         currentGuessTextFieldCollection = guess1TextFields
         guess1TextFields[0].becomeFirstResponder()
     }
@@ -113,6 +111,13 @@ class ViewController: UIViewController {
     
     func startNextGuess() {
         switch(guessNum) {
+        case 1:
+            for i in 0...4 {
+                guess1TextFields[i].isEnabled = true
+                currentGuessTextFieldCollection = guess1TextFields
+                guess1TextFields[0].becomeFirstResponder()
+            }
+            break
         case 2:
             for i in 0...4 {
                 guess1TextFields[i].isEnabled = false
@@ -161,8 +166,9 @@ class ViewController: UIViewController {
     
     func gameOverAlert(with message: String) {
         let alert = UIAlertController(title: "Round Over", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Okay", style: .default) { (action) in
+        let action = UIAlertAction(title: "One More", style: .default) { (action) in
             alert.dismiss(animated: true, completion: nil)
+            self.restart()
         }
         
         alert.addAction(action)
@@ -173,6 +179,31 @@ class ViewController: UIViewController {
         for i in 0...4 {
             currentGuessTextFieldCollection[i].isEnabled = false
         }
+    }
+    
+    func restart() {
+        for i in 0...4 {
+            //Clears all text fields
+            guess1TextFields[i].text = ""
+            guess2TextFields[i].text = ""
+            guess3TextFields[i].text = ""
+            guess4TextFields[i].text = ""
+            guess5TextFields[i].text = ""
+            guess6TextFields[i].text = ""
+            guess1TextFields[i].backgroundColor = UIColor.clear
+            guess2TextFields[i].backgroundColor = UIColor.clear
+            guess3TextFields[i].backgroundColor = UIColor.clear
+            guess4TextFields[i].backgroundColor = UIColor.clear
+            guess5TextFields[i].backgroundColor = UIColor.clear
+            guess6TextFields[i].backgroundColor = UIColor.clear
+            
+            //Clears most recent user guess from array
+            userGuess[i] = ""
+        }
+        
+        guessNum = 1
+        loadTestWord()
+        startNextGuess()
     }
     
     //MARK: - Datasource loading - wordList.txt
@@ -256,6 +287,7 @@ class ViewController: UIViewController {
                 
                 print(testWord!.wordNumID)
                 print(testWord!.guessed)
+                print(testWord!.wordText!.uppercased())
             } else {
                 loadTestWord()
                 print("Word already guessed, picking another")
