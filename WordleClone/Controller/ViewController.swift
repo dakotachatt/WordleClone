@@ -240,17 +240,26 @@ class ViewController: UIViewController {
             
             let testWordNum = Int.random(in: 0..<wordListCount)
             let predicate = NSPredicate(format: "wordNumID == %d", Int32(testWordNum))
+            
             request.predicate = predicate
             
             let testWordFetched = try context.fetch(request)
-            testWord = testWordFetched[0]
-            let testWordString = testWord?.wordText
-            for i in 0...4 {
-                testWordArray[i] = (testWordString?[i..<(i+1)].uppercased())!
-            }
             
-            print(testWord!.wordNumID)
-            print(testWord!.guessed)
+            testWord = testWordFetched[0]
+            
+            //To loop through and retry until a word that hasn't been guessed has been found, XXXXXX possible infinite loop work on avoiding
+            if(!testWord!.guessed) {
+                let testWordString = testWord?.wordText
+                for i in 0...4 {
+                    testWordArray[i] = (testWordString?[i..<(i+1)].uppercased())!
+                }
+                
+                print(testWord!.wordNumID)
+                print(testWord!.guessed)
+            } else {
+                loadTestWord()
+                print("Word already guessed, picking another")
+            }
         } catch {
             print("Error fetching category list: \(error)")
         }
