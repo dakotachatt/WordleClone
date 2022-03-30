@@ -56,7 +56,10 @@ class ViewController: UIViewController {
         guess1TextFields[0].becomeFirstResponder()
     }
     
+    //MARK: - Gameplay related functions
     func checkAnswer() {
+        
+        
         for i in 0...4 {
            var presentInWord = false
             
@@ -78,13 +81,37 @@ class ViewController: UIViewController {
             }
         }
         
+        //Used to track whether all letters in a given guess are correct or not - ends game if true after all letters looped through
+        var correctLetterCount = 0
+        
+        for i in 0...4 {
+            if(currentGuessTextFieldCollection[i].backgroundColor == UIColor.green) {
+                correctLetterCount += 1
+            }
+        }
+        
         //Used for startNextGuess() to determine which line of textFields to enable
-        guessNum += 1
-        startNextGuess()
+        if(correctLetterCount != 5) {
+            guessNum += 1
+            
+            if(guessNum <= 6) {
+                startNextGuess()
+            } else {
+                gameOverTextFieldLock()
+                let message = "Sorry, you could not guess \(testWord!.wordText!.uppercased())"
+                gameOverAlert(with: message)
+            }
+        } else {
+            testWord?.guessed = true
+            testWord?.numberOfGuesses = Int16(guessNum)
+            saveWords()
+            gameOverTextFieldLock()
+            let message = "Congratulations! You guessed \(testWord!.wordText!.uppercased()) in \(guessNum) guesses!"
+            gameOverAlert(with: message)
+        }
     }
     
     func startNextGuess() {
-        print("Should start next guess")
         switch(guessNum) {
         case 2:
             for i in 0...4 {
@@ -127,25 +154,28 @@ class ViewController: UIViewController {
             }
             break
         default:
+            print("Error: NextGuess Function, guessNum not between 2-6")
             break
         }
     }
     
-    //Auto select next text field after user types a letter
-    @IBAction func letterChanged(_ sender: UITextField) {
-        if(sender.text != "") {
-            let currentTextFieldTag = sender.tag
-            
-            //Formula below ensures when tag is > length of word, resulting number is still between 0 - 4
-            print((sender.tag - (5 * (guessNum - 1))))
-            userGuess[(sender.tag - (5 * (guessNum - 1)))] = sender.text!
-            
-            if let nextTextField = self.view.viewWithTag(currentTextFieldTag + 1) as? UITextField {
-                nextTextField.becomeFirstResponder()
-            }
+    func gameOverAlert(with message: String) {
+        let alert = UIAlertController(title: "Round Over", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Okay", style: .default) { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func gameOverTextFieldLock() {
+        for i in 0...4 {
+            currentGuessTextFieldCollection[i].isEnabled = false
         }
     }
     
+    //MARK: - Datasource loading - wordList.txt
     //Loads the initial words list from wordList.txt into the CoreData Word entity, used only on first run on device
     func loadWordData() {
         var words = [String]()
@@ -172,10 +202,29 @@ class ViewController: UIViewController {
         saveWords()
     }
     
+    //MARK: - Keyboard auto increment/decrement functions
+    
+    //Auto select next text field after user types a letter
+    @IBAction func letterChanged(_ sender: UITextField) {
+        if(sender.text != "") {
+            let currentTextFieldTag = sender.tag
+            
+            //Formula below ensures when tag is > length of word, resulting number is still between 0 - 4
+            userGuess[(sender.tag - (5 * (guessNum - 1)))] = sender.text!
+            
+            if let nextTextField = self.view.viewWithTag(currentTextFieldTag + 1) as? UITextField {
+                nextTextField.becomeFirstResponder()
+            }
+        }
+    }
+    
+    //Auto select previous text field when user deletes a lettere
+    
     //MARK: - Model Manipulation Methods
     func saveWords() {
         do {
             try context.save()
+            print("Save successful")
         } catch {
             print("Error saving context: \(error)")
         }
@@ -199,6 +248,9 @@ class ViewController: UIViewController {
             for i in 0...4 {
                 testWordArray[i] = (testWordString?[i..<(i+1)].uppercased())!
             }
+            
+            print(testWord!.wordNumID)
+            print(testWord!.guessed)
         } catch {
             print("Error fetching category list: \(error)")
         }
@@ -211,7 +263,6 @@ class ViewController: UIViewController {
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         checkAnswer()
-
         return false
     }
     
@@ -224,6 +275,7 @@ extension ViewController: UITextFieldDelegate {
     }
 }
 
+//MARK: - String subscript access functions
 //To be able to use subscripts on strings to get each letter to populate an array for future guess/test word comparison
 extension String {
     subscript(_ range: CountableRange<Int>) -> String {
