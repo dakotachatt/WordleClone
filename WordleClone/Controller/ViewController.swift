@@ -4,11 +4,12 @@
 //
 //  Created by Dakota Chatt on 2022-03-25.
 //
+//  NOTE: All Components should have -1 as tag by default and not 0
 
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, DeleteTextFieldDelegate {
 
     var testWord : Word? = nil
     var testWordArray : [String] = ["", "", "", "", ""]
@@ -21,16 +22,17 @@ class ViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     //Text Field Outlets
-    @IBOutlet var guess1TextFields: [UITextField]!
-    @IBOutlet var guess2TextFields: [UITextField]!
-    @IBOutlet var guess3TextFields: [UITextField]!
-    @IBOutlet var guess4TextFields: [UITextField]!
-    @IBOutlet var guess5TextFields: [UITextField]!
-    @IBOutlet var guess6TextFields: [UITextField]!
+    @IBOutlet var guess1TextFields: [DeleteTextField]!
+    @IBOutlet var guess2TextFields: [DeleteTextField]!
+    @IBOutlet var guess3TextFields: [DeleteTextField]!
+    @IBOutlet var guess4TextFields: [DeleteTextField]!
+    @IBOutlet var guess5TextFields: [DeleteTextField]!
+    @IBOutlet var guess6TextFields: [DeleteTextField]!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Set Delegates
         for i in 0...4 {
             self.guess1TextFields[i].delegate = self
             self.guess2TextFields[i].delegate = self
@@ -38,6 +40,12 @@ class ViewController: UIViewController {
             self.guess4TextFields[i].delegate = self
             self.guess5TextFields[i].delegate = self
             self.guess6TextFields[i].delegate = self
+            self.guess1TextFields[i].deleteTextFieldDelegate = self
+            self.guess2TextFields[i].deleteTextFieldDelegate = self
+            self.guess3TextFields[i].deleteTextFieldDelegate = self
+            self.guess4TextFields[i].deleteTextFieldDelegate = self
+            self.guess5TextFields[i].deleteTextFieldDelegate = self
+            self.guess6TextFields[i].deleteTextFieldDelegate = self
         }
         
         //Determines if user has already initially run app on device, and if not, to populate the word list
@@ -240,7 +248,7 @@ class ViewController: UIViewController {
         if(sender.text != "") {
             let currentTextFieldTag = sender.tag
             
-            //Formula below ensures when tag is > length of word, resulting number is still between 0 - 4
+            //Formula below ensures when tag is > length of word, resulting number is still between 0 - 4 when updating userGuess array
             userGuess[(sender.tag - (5 * (guessNum - 1)))] = sender.text!
             
             if let nextTextField = self.view.viewWithTag(currentTextFieldTag + 1) as? UITextField {
@@ -249,7 +257,15 @@ class ViewController: UIViewController {
         }
     }
     
-    //Auto select previous text field when user deletes a lettere
+    //Auto select previous text field when user deletes a letter
+    func backwardDetected(textField: DeleteTextField) {
+        let currentTextFieldTag = textField.tag
+        if(textField.text!.isEmpty && (currentTextFieldTag - (5 * (guessNum - 1)) != 0)) {
+            if let previousTextField = self.view.viewWithTag(currentTextFieldTag - 1) as? DeleteTextField {
+                previousTextField.becomeFirstResponder()
+            }
+        }
+    }
     
     //MARK: - Model Manipulation Methods
     func saveWords() {
@@ -314,6 +330,21 @@ extension ViewController: UITextFieldDelegate {
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         return updatedText.count <= 1
     }
+    
+}
+
+//MARK: - Detect Backspace Pressed Method/Protocol
+protocol DeleteTextFieldDelegate: AnyObject {
+   func backwardDetected(textField: DeleteTextField)
+}
+
+class DeleteTextField: UITextField {
+   weak var deleteTextFieldDelegate: DeleteTextFieldDelegate?
+
+   override func deleteBackward() {
+     super.deleteBackward()
+     self.deleteTextFieldDelegate?.backwardDetected(textField: self)
+   }
 }
 
 //MARK: - String subscript access functions
