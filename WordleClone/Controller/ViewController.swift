@@ -64,25 +64,23 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     
     //MARK: - Gameplay related functions
     func checkAnswer() {
-        
-        
         for i in 0...4 {
            var presentInWord = false
             
             if(userGuess[i] == testWordArray[i]) {
-                currentGuessTextFieldCollection[i].backgroundColor = UIColor.green
+                currentGuessTextFieldCollection[i].backgroundColor = UIColor(red: 0.42, green: 0.67, blue: 0.39, alpha: 1.00)
             } else {
                 for j in 0...4 {
                     if(i != j) {
                         if(userGuess[i] == testWordArray[j]) {
-                            currentGuessTextFieldCollection[i].backgroundColor = UIColor.yellow
+                            currentGuessTextFieldCollection[i].backgroundColor = UIColor(red: 0.79, green: 0.71, blue: 0.34, alpha: 1.00)
                             presentInWord = true
                         }
                     }
                 }
                 
                 if(!presentInWord) {
-                    currentGuessTextFieldCollection[i].backgroundColor = UIColor.gray
+                    currentGuessTextFieldCollection[i].backgroundColor = UIColor(red: 0.47, green: 0.49, blue: 0.50, alpha: 1.00)
                 }
             }
         }
@@ -91,7 +89,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         var correctLetterCount = 0
         
         for i in 0...4 {
-            if(currentGuessTextFieldCollection[i].backgroundColor == UIColor.green) {
+            if(currentGuessTextFieldCollection[i].backgroundColor == UIColor(red: 0.42, green: 0.67, blue: 0.39, alpha: 1.00)) {
                 correctLetterCount += 1
             }
         }
@@ -183,6 +181,16 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         present(alert, animated: true, completion: nil)
     }
     
+    func missingLetterAlert() {
+        let alert = UIAlertController(title: "Incomplete", message: "All letters must be filled in", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Okay", style: .default) { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
     func gameOverTextFieldLock() {
         for i in 0...4 {
             currentGuessTextFieldCollection[i].isEnabled = false
@@ -250,7 +258,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             
             //Formula below ensures when tag is > length of word, resulting number is still between 0 - 4 when updating userGuess array
             userGuess[(sender.tag - (5 * (guessNum - 1)))] = sender.text!
-            
+            print(userGuess[(sender.tag - (5 * (guessNum - 1)))])
             if let nextTextField = self.view.viewWithTag(currentTextFieldTag + 1) as? UITextField {
                 nextTextField.becomeFirstResponder()
             }
@@ -260,7 +268,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     //Auto select previous text field when user deletes a letter
     func backwardDetected(textField: DeleteTextField) {
         let currentTextFieldTag = textField.tag
-        if(textField.text!.isEmpty && (currentTextFieldTag - (5 * (guessNum - 1)) != 0)) {
+        if(currentTextFieldTag - (5 * (guessNum - 1)) != 0) {
             if let previousTextField = self.view.viewWithTag(currentTextFieldTag - 1) as? DeleteTextField {
                 previousTextField.becomeFirstResponder()
             }
@@ -319,7 +327,19 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
 //MARK: - Keyboard return and string length methods
 extension ViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        checkAnswer()
+        var noFieldsBlank = true
+        
+        for i in 0...4 {
+            if(currentGuessTextFieldCollection[i].text! == "" || currentGuessTextFieldCollection[i].text! == " ") {
+                noFieldsBlank = false
+            }
+        }
+        
+        if(noFieldsBlank) {
+            checkAnswer()
+        } else {
+            missingLetterAlert()
+        }
         return false
     }
     
@@ -329,6 +349,17 @@ extension ViewController: UITextFieldDelegate {
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
         return updatedText.count <= 1
+    }
+    
+    //Highlights the particular cell that is selected for editing as the cursor is no visible to the user
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.layer.borderWidth = 3
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        textField.layer.borderWidth = 1.0
+        return true
     }
     
 }
@@ -342,8 +373,11 @@ class DeleteTextField: UITextField {
    weak var deleteTextFieldDelegate: DeleteTextFieldDelegate?
 
    override func deleteBackward() {
-     super.deleteBackward()
-     self.deleteTextFieldDelegate?.backwardDetected(textField: self)
+       if(text!.isEmpty) {
+           self.deleteTextFieldDelegate?.backwardDetected(textField: self)
+       }
+       
+       super.deleteBackward()
    }
 }
 

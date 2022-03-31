@@ -24,6 +24,7 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" highlighted="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="fLh-nd-ZTs" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="WAg-E2-1sx"/>
                                                     <constraint firstAttribute="height" constant="50" id="rP9-uw-yBt"/>
@@ -36,6 +37,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="zE8-6r-cjg" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="50"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Dj7-D6-aw8"/>
                                                     <constraint firstAttribute="width" constant="50" id="RSJ-nk-bun"/>
@@ -48,6 +50,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="2" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZVp-zL-DMB" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="120" y="0.0" width="50" height="50"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="6MF-WH-NF0"/>
                                                     <constraint firstAttribute="width" constant="50" id="grQ-No-4MP"/>
@@ -60,6 +63,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="3" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="sZU-5a-2V9" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="180" y="0.0" width="50" height="50"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="3EN-Mw-63O"/>
                                                     <constraint firstAttribute="height" constant="50" id="elI-TZ-Q43"/>
@@ -72,6 +76,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="4" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="qDa-dU-vDl" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="50"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="M6A-Xg-MJc"/>
                                                     <constraint firstAttribute="width" constant="50" id="x2z-BX-57C"/>
@@ -89,6 +94,7 @@
                                         <subviews>
                                             <textField opaque="NO" tag="5" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="zgO-bu-aA7" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -97,6 +103,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="6" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="4He-Mr-YBX" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -105,6 +112,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="7" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="hzv-Sc-Xjy" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="120" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -113,6 +121,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="8" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="II4-bG-4SX" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="180" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -121,6 +130,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="9" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="R4s-h2-eAm" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -134,6 +144,7 @@
                                         <subviews>
                                             <textField opaque="NO" tag="10" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="eMk-t8-1ov" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -142,6 +153,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="11" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="qNW-ow-j5v" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -150,6 +162,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="12" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="MPk-Nw-hx7" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="120" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -158,6 +171,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="13" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="0fM-LM-ROO" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="180" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -166,6 +180,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="14" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="kPM-d7-32J" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -179,6 +194,7 @@
                                         <subviews>
                                             <textField opaque="NO" tag="15" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="qzQ-Zx-EEb" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -187,6 +203,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="16" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="3jc-hr-cbt" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -195,6 +212,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="17" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="DBe-cU-ZMK" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="120" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -203,6 +221,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="18" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="LI9-R6-3sx" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="180" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -211,6 +230,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="19" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="hqk-0b-NeD" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -224,6 +244,7 @@
                                         <subviews>
                                             <textField opaque="NO" tag="20" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="nSU-Re-9Pm" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -232,6 +253,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="21" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="WbC-s4-bEa" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -240,6 +262,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="22" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="Jnd-jF-dUh" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="120" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -248,6 +271,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="23" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="anx-iI-Wpg" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="180" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -256,6 +280,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="24" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="AMU-Wd-mNd" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -269,6 +294,7 @@
                                         <subviews>
                                             <textField opaque="NO" tag="25" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="acr-84-AQJ" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -277,6 +303,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="26" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="fTC-i6-ti7" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="60" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -285,6 +312,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="27" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="9Ce-O8-TM5" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="120" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -293,6 +321,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="28" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="iDZ-Py-T6K" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="180" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
@@ -301,6 +330,7 @@
                                             </textField>
                                             <textField opaque="NO" tag="29" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="QRc-Je-N59" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                 <rect key="frame" x="240" y="0.0" width="50" height="57.666666666666664"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no"/>
                                                 <connections>
