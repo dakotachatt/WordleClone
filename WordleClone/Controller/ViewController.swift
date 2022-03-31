@@ -110,7 +110,14 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             testWord?.numberOfGuesses = Int16(guessNum)
             saveWords()
             gameOverTextFieldLock()
-            let message = "Congratulations! You guessed \(testWord!.wordText!.uppercased()) in \(guessNum) guesses!"
+            var message = ""
+            
+            if(guessNum == 1) {
+                message = "Congratulations! You guessed \(testWord!.wordText!.uppercased()) on your first try!"
+            } else {
+                message = "Congratulations! You guessed \(testWord!.wordText!.uppercased()) in \(guessNum) guesses!"
+            }
+            
             gameOverAlert(with: message)
         }
     }
