@@ -16,11 +16,11 @@ class MainViewController: UIViewController {
 
         titleLabel.text = ""
         var charIndex = 0.0
-        let titleText = "Wordle Clone"
+        let titleText = K.applicationTitle
         
         //Displays title text letter by letter
         for letter in titleText {
-            Timer.scheduledTimer(withTimeInterval: 0.15 * charIndex, repeats: false) { timer in
+            Timer.scheduledTimer(withTimeInterval: 0.125 * charIndex, repeats: false) { timer in
                 self.titleLabel.text?.append(letter)
             }
             charIndex += 1
@@ -28,7 +28,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func startButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "goToGame", sender: self)
+        performSegue(withIdentifier: K.Segues.goToGameSegue, sender: self)
     }
     
 }

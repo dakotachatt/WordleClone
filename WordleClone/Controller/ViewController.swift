@@ -68,19 +68,19 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
            var presentInWord = false
             
             if(userGuess[i] == testWordArray[i]) {
-                currentGuessTextFieldCollection[i].backgroundColor = UIColor(red: 0.42, green: 0.67, blue: 0.39, alpha: 1.00)
+                currentGuessTextFieldCollection[i].backgroundColor = K.Colors.correctLocation
             } else {
                 for j in 0...4 {
                     if(i != j) {
                         if(userGuess[i] == testWordArray[j]) {
-                            currentGuessTextFieldCollection[i].backgroundColor = UIColor(red: 0.79, green: 0.71, blue: 0.34, alpha: 1.00)
+                            currentGuessTextFieldCollection[i].backgroundColor = K.Colors.incorrectLocation
                             presentInWord = true
                         }
                     }
                 }
                 
                 if(!presentInWord) {
-                    currentGuessTextFieldCollection[i].backgroundColor = UIColor(red: 0.47, green: 0.49, blue: 0.50, alpha: 1.00)
+                    currentGuessTextFieldCollection[i].backgroundColor = K.Colors.letterNotPresent
                 }
             }
         }
@@ -89,7 +89,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         var correctLetterCount = 0
         
         for i in 0...4 {
-            if(currentGuessTextFieldCollection[i].backgroundColor == UIColor(red: 0.42, green: 0.67, blue: 0.39, alpha: 1.00)) {
+            if(currentGuessTextFieldCollection[i].backgroundColor == K.Colors.correctLocation) {
                 correctLetterCount += 1
             }
         }
@@ -236,7 +236,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         //Used to assign each word an incremented word ID used to search randomly when test word is chosen
         var wordNum = 1
         
-        if let wordListURL = Bundle.main.url(forResource: "wordList", withExtension: "txt") {
+        if let wordListURL = Bundle.main.url(forResource: K.wordListFileName, withExtension: "txt") {
             if let wordList = try? String(contentsOf: wordListURL) {
                 words = wordList.components(separatedBy: "\n")
             }
@@ -259,7 +259,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     //MARK: - XXXX RENAME
     
     @IBAction func statsButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "goToStats", sender: self)
+        performSegue(withIdentifier: K.Segues.goToStatsSegue, sender: self)
     }
     
     

@@ -15,6 +15,7 @@
 		1D1CC9E927EE25D6007C55DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1CC9E727EE25D6007C55DD /* LaunchScreen.storyboard */; };
 		1D25F56227F79FB500E9BBF5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D25F56127F79FB500E9BBF5 /* MainViewController.swift */; };
 		1D25F56427F7A8CE00E9BBF5 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D25F56327F7A8CE00E9BBF5 /* StatsViewController.swift */; };
+		1D25F56627F7B96000E9BBF5 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D25F56527F7B96000E9BBF5 /* K.swift */; };
 		1D3D1E1627F38D8B004229BC /* wordList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1D3D1E1527F38D8B004229BC /* wordList.txt */; };
 		1D71AD4627F214A200006596 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D71AD4527F214A200006596 /* config.swift */; };
 		1D71AD4B27F21C1300006596 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D71AD4927F21C1300006596 /* DataModel.xcdatamodeld */; };
@@ -31,6 +32,7 @@
 		1D1CC9EA27EE25D6007C55DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D25F56127F79FB500E9BBF5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1D25F56327F7A8CE00E9BBF5 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
+		1D25F56527F7B96000E9BBF5 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		1D3D1E1527F38D8B004229BC /* wordList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = wordList.txt; sourceTree = SOURCE_ROOT; };
 		1D71AD4527F214A200006596 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		1D71AD4A27F21C1300006596 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				1D71AD4927F21C1300006596 /* DataModel.xcdatamodeld */,
+				1D25F56527F7B96000E9BBF5 /* K.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				1D71AD4B27F21C1300006596 /* DataModel.xcdatamodeld in Sources */,
 				1D25F56227F79FB500E9BBF5 /* MainViewController.swift in Sources */,
 				1D25F56427F7A8CE00E9BBF5 /* StatsViewController.swift in Sources */,
+				1D25F56627F7B96000E9BBF5 /* K.swift in Sources */,
 				1D71AD4627F214A200006596 /* config.swift in Sources */,
 				1D1CC9DC27EE25D5007C55DD /* SceneDelegate.swift in Sources */,
 			);
