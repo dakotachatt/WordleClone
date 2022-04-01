@@ -256,6 +256,13 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         saveWords()
     }
     
+    //MARK: - XXXX RENAME
+    
+    @IBAction func statsButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "goToStats", sender: self)
+    }
+    
+    
     //MARK: - Keyboard auto increment/decrement functions
     
     //Auto select next text field after user types a letter
