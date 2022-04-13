@@ -73,7 +73,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 for j in 0...4 {
                     if(i != j) {
                         //Marks a duplicate letter as yellow if more than one present, else it's marked grey∫
-                        if(userGuess[i] == testWordArray[j] && testWordArray.filter{$0 == userGuess[i]}.count > 1) {
+                        if(userGuess[i] == testWordArray[j] && (userGuess.filter{$0 == userGuess[i]}.count <= testWordArray.filter{$0 == userGuess[i]}.count)) {
                             currentGuessTextFieldCollection[i].backgroundColor = K.Colors.incorrectLocation
                             presentInWord = true
                         }
