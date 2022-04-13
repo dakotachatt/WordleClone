@@ -272,8 +272,8 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             let currentTextFieldTag = sender.tag
             
             //Formula below ensures when tag is > length of word, resulting number is still between 0 - 4 when updating userGuess array
-            userGuess[(sender.tag - (5 * (guessNum - 1)))] = sender.text!
-            print(userGuess[(sender.tag - (5 * (guessNum - 1)))])
+            userGuess[(sender.tag - (5 * (guessNum - 1)) - 1)] = sender.text!
+            print(userGuess[(sender.tag - (5 * (guessNum - 1)) - 1)])
             if let nextTextField = self.view.viewWithTag(currentTextFieldTag + 1) as? UITextField {
                 nextTextField.becomeFirstResponder()
             }
@@ -283,7 +283,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     //Auto select previous text field when user deletes a letter
     func backwardDetected(textField: DeleteTextField) {
         let currentTextFieldTag = textField.tag
-        if(currentTextFieldTag - (5 * (guessNum - 1)) != 0) {
+        if(currentTextFieldTag - (5 * (guessNum - 1)) != 1) {
             if let previousTextField = self.view.viewWithTag(currentTextFieldTag - 1) as? DeleteTextField {
                 previousTextField.becomeFirstResponder()
             }
