@@ -363,6 +363,13 @@ extension ViewController: UITextFieldDelegate {
         let currentText = textField.text ?? ""
         guard let stringRange = Range(range, in: currentText) else { return false }
         let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+        
+        //Ensures no whitespaces are allowed
+        if(updatedText == " ") {
+            return false
+        }
+        
+        //Ensures only a single character is returned
         return updatedText.count <= 1
     }
     
@@ -392,7 +399,7 @@ extension ViewController: UITextFieldDelegate {
     
 }
 
-//MARK: - Detect Backspace Pressed Method/Protocol
+//MARK: - Custom TextField Class - Detect Backspace Pressed Method/Protocol, Set cursor to end of Textfield on Selection
 protocol DeleteTextFieldDelegate: AnyObject {
    func backwardDetected(textField: DeleteTextField)
 }
@@ -404,6 +411,9 @@ class DeleteTextField: UITextField {
        if(text!.isEmpty) {
            self.deleteTextFieldDelegate?.backwardDetected(textField: self)
        }
+       
+       let endPosition = self.endOfDocument
+       self.selectedTextRange = self.textRange(from: endPosition, to: endPosition)
        
        super.deleteBackward()
    }
