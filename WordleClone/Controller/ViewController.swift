@@ -257,7 +257,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         saveWords()
     }
     
-    //MARK: - XXXX RENAME
+    //MARK: - User Statistics Functions
     
     @IBAction func statsButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: K.Segues.goToStatsSegue, sender: self)
@@ -369,11 +369,24 @@ extension ViewController: UITextFieldDelegate {
     //Highlights the particular cell that is selected for editing as the cursor is no visible to the user
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         textField.layer.borderWidth = 3
+        
+        if(traitCollection.userInterfaceStyle == .light) {
+            textField.layer.borderColor = UIColor.black.cgColor
+        } else {
+            textField.layer.borderColor = UIColor.white.cgColor
+        }
+        
         return true
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         textField.layer.borderWidth = 1.0
+        
+        if(traitCollection.userInterfaceStyle == .light) {
+            textField.layer.borderColor = UIColor.black.cgColor
+        } else {
+            textField.layer.borderColor = UIColor.white.cgColor
+        }
         return true
     }
     
