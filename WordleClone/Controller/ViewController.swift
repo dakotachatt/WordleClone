@@ -72,7 +72,8 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             } else {
                 for j in 0...4 {
                     if(i != j) {
-                        if(userGuess[i] == testWordArray[j]) {
+                        //Marks a duplicate letter as yellow if more than one present, else it's marked grey∫
+                        if(userGuess[i] == testWordArray[j] && testWordArray.filter{$0 == userGuess[i]}.count > 1) {
                             currentGuessTextFieldCollection[i].backgroundColor = K.Colors.incorrectLocation
                             presentInWord = true
                         }
@@ -316,7 +317,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             
             testWord = testWordFetched[0]
             
-            //To loop through and retry until a word that hasn't been guessed has been found, XXXXXX possible infinite loop work on avoiding
+            //To loop through and retry until a word that hasn't been guessed has been found, XXXXXX possible infinite loop (when all words have been guessed) work on avoiding
             if(!testWord!.guessed) {
                 let testWordString = testWord?.wordText
                 for i in 0...4 {
