@@ -4,7 +4,6 @@
 //
 //  Created by Dakota Chatt on 2022-03-25.
 //
-//  NOTE: All Components should have -1 as tag by default and not 0
 
 import UIKit
 import CoreData
@@ -14,6 +13,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     var testWord : Word? = nil
     var testWordArray : [String] = ["", "", "", "", ""]
     var userGuess : [String] = ["", "", "", "", ""]
+    var guessColors : [UIColor] = [K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent]
     var currentGuessTextFieldCollection : [UITextField] = []
     var guessNum = 1
     
@@ -64,33 +64,42 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     
     //MARK: - Gameplay related functions
     func checkAnswer() {
+        
+        guessColors = [K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent]
+        var testWordPlaceholder = testWordArray
+        
         for i in 0...4 {
-           var presentInWord = false
-            
-            if(userGuess[i] == testWordArray[i]) {
-                currentGuessTextFieldCollection[i].backgroundColor = K.Colors.correctLocation
-            } else {
-                for j in 0...4 {
-                    if(i != j) {
-                        //Marks a duplicate letter as yellow if more than one present, else it's marked grey∫
-                        if(userGuess[i] == testWordArray[j] && (userGuess.filter{$0 == userGuess[i]}.count <= testWordArray.filter{$0 == userGuess[i]}.count)) {
-                            currentGuessTextFieldCollection[i].backgroundColor = K.Colors.incorrectLocation
-                            presentInWord = true
-                        }
-                    }
+            if userGuess[i] == testWordPlaceholder[i] {
+                guessColors[i] = K.Colors.correctLocation
+                
+                testWordPlaceholder[i] = ""
+                print(testWordPlaceholder)
+                print(testWordArray)
+            }
+        }
+        
+        for i in 0...4 {
+            if testWordPlaceholder.contains(userGuess[i]) && guessColors[i] != K.Colors.correctLocation {
+                guessColors[i] = K.Colors.incorrectLocation
+                
+                if let letterIndex = testWordPlaceholder.firstIndex(of: userGuess[i]) {
+                    testWordPlaceholder[letterIndex] = ""
                 }
                 
-                if(!presentInWord) {
-                    currentGuessTextFieldCollection[i].backgroundColor = K.Colors.letterNotPresent
-                }
+                print(testWordPlaceholder)
+                print(testWordArray)
             }
+        }
+        
+        for i in 0...4 {
+            currentGuessTextFieldCollection[i].backgroundColor = guessColors[i]
         }
         
         //Used to track whether all letters in a given guess are correct or not - ends game if true after all letters looped through
         var correctLetterCount = 0
         
         for i in 0...4 {
-            if(currentGuessTextFieldCollection[i].backgroundColor == K.Colors.correctLocation) {
+            if(guessColors[i] == K.Colors.correctLocation) {
                 correctLetterCount += 1
             }
         }
