@@ -63,7 +63,23 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     }
     
     //MARK: - Gameplay related functions
+    //Verifies that word is a real word and spelled correctly
+    func isCorrectWord(word: String) -> Bool {
+        let checker = UITextChecker()
+        let range = NSRange(location: 0, length: word.count)
+        let incorrectRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
+        
+        return incorrectRange.location == NSNotFound
+    }
+    
     func checkAnswer() {
+        
+        //Verifies that guess the user entered is a real word, if not guess is not submitted
+        let userGuessString = userGuess.joined(separator: "").lowercased()
+        if (!isCorrectWord(word: userGuessString)) {
+            notAWordAlert()
+            return
+        }
         
         guessColors = [K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent]
         var testWordPlaceholder = testWordArray
@@ -73,8 +89,6 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 guessColors[i] = K.Colors.correctLocation
                 
                 testWordPlaceholder[i] = ""
-                print(testWordPlaceholder)
-                print(testWordArray)
             }
         }
         
@@ -85,9 +99,6 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 if let letterIndex = testWordPlaceholder.firstIndex(of: userGuess[i]) {
                     testWordPlaceholder[letterIndex] = ""
                 }
-                
-                print(testWordPlaceholder)
-                print(testWordArray)
             }
         }
         
@@ -200,6 +211,16 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     
     func missingLetterAlert() {
         let alert = UIAlertController(title: "Incomplete", message: "All letters must be filled in", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Okay", style: .default) { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func notAWordAlert() {
+        let alert = UIAlertController(title: "Not a Word", message: "You did not enter a real word", preferredStyle: .alert)
         let action = UIAlertAction(title: "Okay", style: .default) { (action) in
             alert.dismiss(animated: true, completion: nil)
         }
