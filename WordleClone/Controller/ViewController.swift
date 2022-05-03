@@ -9,18 +9,6 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController, DeleteTextFieldDelegate {
-
-    var testWord : Word? = nil
-    var testWordArray : [String] = ["", "", "", "", ""]
-    var userGuess : [String] = ["", "", "", "", ""]
-    var guessColors : [UIColor] = [K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent]
-    var currentGuessTextFieldCollection : [UITextField] = []
-    var guessNum = 1
-    
-    let defaults = UserDefaults.standard
-
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     //Text Field Outlets
     @IBOutlet var guess1TextFields: [DeleteTextField]!
     @IBOutlet var guess2TextFields: [DeleteTextField]!
@@ -28,10 +16,24 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     @IBOutlet var guess4TextFields: [DeleteTextField]!
     @IBOutlet var guess5TextFields: [DeleteTextField]!
     @IBOutlet var guess6TextFields: [DeleteTextField]!
+    @IBOutlet var letterKeyButtons: [UIButton]!
     
+    var testWord : Word? = nil
+    var testWordArray : [String] = ["", "", "", "", ""]
+    var userGuess : [String] = ["", "", "", "", ""]
+    var guessColors : [UIColor] = [K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent]
+    var currentGuessTextFieldCollection : [UITextField] = []
+    var currentTextField : DeleteTextField?
+    var guessNum = 1
+    
+    let defaults = UserDefaults.standard
+
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateKeyboardColors()
+        
         //Set Delegates
         for i in 0...4 {
             self.guess1TextFields[i].delegate = self
@@ -48,6 +50,15 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             self.guess6TextFields[i].deleteTextFieldDelegate = self
         }
         
+        for i in 0...4 {
+            self.guess1TextFields[i].inputView = UIView()
+            self.guess2TextFields[i].inputView = UIView()
+            self.guess3TextFields[i].inputView = UIView()
+            self.guess4TextFields[i].inputView = UIView()
+            self.guess5TextFields[i].inputView = UIView()
+            self.guess6TextFields[i].inputView = UIView()
+        }
+        
         //Determines if user has already initially run app on device, and if not, to populate the word list
         let isWordListLoaded = defaults.bool(forKey: "WordListLoaded")
         if(!isWordListLoaded) {
@@ -60,6 +71,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         
         currentGuessTextFieldCollection = guess1TextFields
         guess1TextFields[0].becomeFirstResponder()
+        currentTextField = guess1TextFields[0]
     }
     
     //MARK: - Gameplay related functions
@@ -76,6 +88,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         
         //Verifies that guess the user entered is a real word, if not guess is not submitted
         let userGuessString = userGuess.joined(separator: "").lowercased()
+        print(userGuessString)
         if (!isCorrectWord(word: userGuessString)) {
             notAWordAlert()
             return
@@ -87,6 +100,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         for i in 0...4 {
             if userGuess[i] == testWordPlaceholder[i] {
                 guessColors[i] = K.Colors.correctLocation
+                WordleDataModel.keyboardColors[userGuess[i]] = K.Colors.correctLocation
                 
                 testWordPlaceholder[i] = ""
             }
@@ -96,6 +110,12 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             if testWordPlaceholder.contains(userGuess[i]) && guessColors[i] != K.Colors.correctLocation {
                 guessColors[i] = K.Colors.incorrectLocation
                 
+                if(WordleDataModel.keyboardColors[userGuess[i]] != K.Colors.correctLocation) {
+                    if(WordleDataModel.keyboardColors[userGuess[i]] != K.Colors.incorrectLocation) {
+                        WordleDataModel.keyboardColors[userGuess[i]] = K.Colors.incorrectLocation
+                    }
+                }
+                
                 if let letterIndex = testWordPlaceholder.firstIndex(of: userGuess[i]) {
                     testWordPlaceholder[letterIndex] = ""
                 }
@@ -103,8 +123,18 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         }
         
         for i in 0...4 {
+            if(WordleDataModel.keyboardColors[userGuess[i]] != K.Colors.correctLocation) {
+                if(WordleDataModel.keyboardColors[userGuess[i]] != K.Colors.incorrectLocation) {
+                    WordleDataModel.keyboardColors[userGuess[i]] = K.Colors.letterNotPresent
+                }
+            }
+        }
+        
+        for i in 0...4 {
             currentGuessTextFieldCollection[i].backgroundColor = guessColors[i]
         }
+        
+        updateKeyboardColors()
         
         //Used to track whether all letters in a given guess are correct or not - ends game if true after all letters looped through
         var correctLetterCount = 0
@@ -150,6 +180,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 guess1TextFields[i].isEnabled = true
                 currentGuessTextFieldCollection = guess1TextFields
                 guess1TextFields[0].becomeFirstResponder()
+                currentTextField = guess1TextFields[0]
             }
             break
         case 2:
@@ -158,6 +189,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 guess2TextFields[i].isEnabled = true
                 currentGuessTextFieldCollection = guess2TextFields
                 guess2TextFields[0].becomeFirstResponder()
+                currentTextField = guess2TextFields[0]
             }
             break
         case 3:
@@ -166,6 +198,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 guess3TextFields[i].isEnabled = true
                 currentGuessTextFieldCollection = guess3TextFields
                 guess3TextFields[0].becomeFirstResponder()
+                currentTextField = guess3TextFields[0]
             }
             break
         case 4:
@@ -174,6 +207,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 guess4TextFields[i].isEnabled = true
                 currentGuessTextFieldCollection = guess4TextFields
                 guess4TextFields[0].becomeFirstResponder()
+                currentTextField = guess4TextFields[0]
             }
             break
         case 5:
@@ -182,6 +216,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 guess5TextFields[i].isEnabled = true
                 currentGuessTextFieldCollection = guess5TextFields
                 guess5TextFields[0].becomeFirstResponder()
+                currentTextField = guess5TextFields[0]
             }
             break
         case 6:
@@ -190,6 +225,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 guess6TextFields[i].isEnabled = true
                 currentGuessTextFieldCollection = guess6TextFields
                 guess6TextFields[0].becomeFirstResponder()
+                currentTextField = guess6TextFields[0]
             }
             break
         default:
@@ -255,10 +291,68 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             userGuess[i] = ""
         }
         
+        for (letter, color) in WordleDataModel.keyboardColors {
+            WordleDataModel.keyboardColors[letter] = K.Colors.unusedLetter
+        }
+        
+        updateKeyboardColors()
+        
         guessNum = 1
         loadTestWord()
         startNextGuess()
     }
+    
+    //MARK: - On Screen Keyboard Functions
+    func updateKeyboardColors() {
+        for i in 0..<letterKeyButtons.count {
+            let currentSelection = letterKeyButtons[i]
+            currentSelection.backgroundColor = WordleDataModel.keyboardColors[currentSelection.titleLabel!.text!]
+            currentSelection.setTitleColor(.black, for: .normal)
+            
+//            if(currentSelection.backgroundColor == K.Colors.unusedLetter) {
+//                currentSelection.tintColor = UIColor.black
+//            } else {
+//                currentSelection.tintColor = UIColor.white
+//            }
+        }
+    }
+    
+    @IBAction func letterKeyPressed(_ sender: UIButton) {
+        currentTextField?.becomeFirstResponder()
+        
+//        //If selected text field has a letter in it, move to next text field and replace value, then select next field, else replace value of currently selected field
+//        if(currentTextField?.text != "") {
+//            letterChanged(currentTextField!)
+//            currentTextField?.text = sender.titleLabel?.text
+//            letterChanged(currentTextField!)
+//        } else {
+            currentTextField?.text = sender.titleLabel?.text
+            letterChanged(currentTextField!)
+//        }
+    }
+    
+    @IBAction func deleteKeyPressed(_ sender: UIButton) {
+        currentTextField?.text = ""
+        backwardDetected(textField: currentTextField!)
+    }
+    
+    @IBAction func submitKeyPressed(_ sender: UIButton) {
+        var noFieldsBlank = true
+        
+        for i in 0...4 {
+            if(currentGuessTextFieldCollection[i].text! == "" || currentGuessTextFieldCollection[i].text! == " ") {
+                noFieldsBlank = false
+            }
+        }
+        
+        if(noFieldsBlank) {
+            checkAnswer()
+        } else {
+            missingLetterAlert()
+        }
+    }
+    
+    
     
     //MARK: - Datasource loading - wordList.txt
     //Loads the initial words list from wordList.txt into the CoreData Word entity, used only on first run on device
@@ -304,8 +398,13 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             //Formula below ensures when tag is > length of word, resulting number is still between 0 - 4 when updating userGuess array
             userGuess[(sender.tag - (5 * (guessNum - 1)) - 1)] = sender.text!
             print(userGuess[(sender.tag - (5 * (guessNum - 1)) - 1)])
-            if let nextTextField = self.view.viewWithTag(currentTextFieldTag + 1) as? UITextField {
-                nextTextField.becomeFirstResponder()
+            
+            //Will only move to the next tag if the selected text field is NOT the last field in a guess
+            if(sender.tag - (5 * (guessNum - 1)) - 1) < 4 {
+                if let nextTextField = self.view.viewWithTag(currentTextFieldTag + 1) as? DeleteTextField {
+                    nextTextField.becomeFirstResponder()
+                    currentTextField = nextTextField
+                }
             }
         }
     }
@@ -316,6 +415,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         if(currentTextFieldTag - (5 * (guessNum - 1)) != 1) {
             if let previousTextField = self.view.viewWithTag(currentTextFieldTag - 1) as? DeleteTextField {
                 previousTextField.becomeFirstResponder()
+                currentTextField = previousTextField
             }
         }
     }
@@ -412,6 +512,8 @@ extension ViewController: UITextFieldDelegate {
         } else {
             textField.layer.borderColor = UIColor.white.cgColor
         }
+        
+        currentTextField = textField as? DeleteTextField
         
         return true
     }
