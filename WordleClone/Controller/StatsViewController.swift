@@ -10,37 +10,57 @@ import CoreData
 
 class StatsViewController: UIViewController {
 
-    @IBOutlet weak var totalCorrectLabel: UILabel!
-    @IBOutlet weak var oneGuessLabel: UILabel!
-    @IBOutlet weak var twoGuessLabel: UILabel!
-    @IBOutlet weak var threeGuessLabel: UILabel!
-    @IBOutlet weak var fourGuessLabel: UILabel!
-    @IBOutlet weak var fiveGuessLabel: UILabel!
-    @IBOutlet weak var sixGuessLabel: UILabel!
-    @IBOutlet weak var avgGuessLabel: UILabel!
+    //Stat Labels
+    @IBOutlet weak var gamesPlayedLabel: UILabel!
+    @IBOutlet weak var percentWonLabel: UILabel!
+    @IBOutlet weak var currentStreakLabel: UILabel!
+    @IBOutlet weak var maxStreakLabel: UILabel!
+    @IBOutlet weak var averageGuessLabel: UILabel!
+    @IBOutlet weak var oneGuessBar: UIProgressView!
+    @IBOutlet weak var twoGuessBar: UIProgressView!
+    @IBOutlet weak var threeGuessBar: UIProgressView!
+    @IBOutlet weak var fourGuessBar: UIProgressView!
+    @IBOutlet weak var fiveGuessBar: UIProgressView!
+    @IBOutlet weak var sixGuessBar: UIProgressView!
+    
     
     var guessedWordArray : [Word] = []
+    
+    let totalPlayed = UserDefaults.standard.integer(forKey: "TotalGamesPlayed")
+    let totalWins = UserDefaults.standard.integer(forKey: "TotalGamesWon")
+    let currentStreak = UserDefaults.standard.integer(forKey: "CurrentWinStreak")
+    let maxStreak = UserDefaults.standard.integer(forKey: "MaxWinStreak")
+    var winPercentage : Float = 0
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loadStats()
+        loadWordStats()
+        loadAccountStats()
     }
     
-    func loadStats() {
+    func loadAccountStats() {
+        if(totalPlayed > 0) {
+            winPercentage = (Float(totalWins) / Float(totalPlayed)) * 100
+        }
+        
+        gamesPlayedLabel.text = String(format: "%d", totalPlayed)
+        percentWonLabel.text = String(format: "%.0f%%", winPercentage)
+        currentStreakLabel.text = String(format: "%d", currentStreak)
+        maxStreakLabel.text = String(format: "%d", maxStreak)
+    }
+    
+    func loadWordStats() {
         let request : NSFetchRequest<Word> = Word.fetchRequest()
         
         do {
-            let totalWordCount = try context.fetch(request).count
-            
             let guessedWordPredicate = NSPredicate(format: "guessed == YES")
             request.predicate = guessedWordPredicate
             
             guessedWordArray = try context.fetch(request)
             
-            let totalGuessed = Float(guessedWordArray.count)
             var oneGuess : Float = 0.0
             var twoGuess : Float  = 0.0
             var threeGuess : Float  = 0.0
@@ -80,14 +100,13 @@ class StatsViewController: UIViewController {
                 }
             }
             
-            totalCorrectLabel.text = String(format: "%d / %d", Int(totalGuessed), Int(totalWordCount))
-            oneGuessLabel.text = String(format: "%.0f%% (%d)", (oneGuess/totalGuessed) * 100, Int(oneGuess))
-            twoGuessLabel.text = String(format: "%.0f%% (%d)", (twoGuess/totalGuessed) * 100, Int(twoGuess))
-            threeGuessLabel.text = String(format: "%.0f%% (%d)", (threeGuess/totalGuessed) * 100, Int(threeGuess))
-            fourGuessLabel.text = String(format: "%.0f%% (%d)", (fourGuess/totalGuessed) * 100, Int(fourGuess))
-            fiveGuessLabel.text = String(format: "%.0f%% (%d)", (fiveGuess/totalGuessed) * 100, Int(fiveGuess))
-            sixGuessLabel.text = String(format: "%.0f%% (%d)", (sixGuess/totalGuessed) * 100, Int(sixGuess))
-            avgGuessLabel.text = String(format: "%.1f", guessSum/totalGuessed)
+            oneGuessBar.setProgress((oneGuess / Float(totalWins)), animated: true)
+            twoGuessBar.setProgress((twoGuess / Float(totalWins)), animated: true)
+            threeGuessBar.setProgress((threeGuess / Float(totalWins)), animated: true)
+            fourGuessBar.setProgress((fourGuess / Float(totalWins)), animated: true)
+            fiveGuessBar.setProgress((fiveGuess / Float(totalWins)), animated: true)
+            sixGuessBar.setProgress((sixGuess / Float(totalWins)), animated: true)
+            averageGuessLabel.text = String(format: "%.1f", guessSum / Float(totalWins))
         } catch {
             print("Error retrieving guessed word stats: \(error)")
         }

@@ -26,8 +26,9 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     var currentTextField : DeleteTextField?
     var guessNum = 1
     
-    let defaults = UserDefaults.standard
-
+    //To detect if word list has been loaded into memory initially and does not require re-loading
+    let isWordListLoaded = UserDefaults.standard.bool(forKey: "WordListLoaded")
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
@@ -60,11 +61,10 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         }
         
         //Determines if user has already initially run app on device, and if not, to populate the word list
-        let isWordListLoaded = defaults.bool(forKey: "WordListLoaded")
         if(!isWordListLoaded) {
             print("Initial Data Loaded")
             loadWordData()
-            defaults.set(true, forKey: "WordListLoaded")
+            UserDefaults.standard.set(true, forKey: "WordListLoaded")
         }
         
         loadTestWord()
@@ -75,7 +75,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     }
     
     //MARK: - Gameplay related functions
-    //Verifies that word is a real word and spelled correctly
+    //Verifies that word is a real word and spelled correctly before the user can submit a guess
     func isCorrectWord(word: String) -> Bool {
         let checker = UITextChecker()
         let range = NSRange(location: 0, length: word.count)
@@ -85,7 +85,6 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     }
     
     func checkAnswer() {
-        
         //Verifies that guess the user entered is a real word, if not guess is not submitted
         let userGuessString = userGuess.joined(separator: "").lowercased()
         print(userGuessString)
@@ -97,6 +96,8 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         guessColors = [K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent]
         var testWordPlaceholder = testWordArray
         
+        //Determines first letters that are in correct place and removes that letter from the placeholder to ensure it is not used again in future loops
+        //also assigns color to keyboard color dictionary for future updating
         for i in 0...4 {
             if userGuess[i] == testWordPlaceholder[i] {
                 guessColors[i] = K.Colors.correctLocation
@@ -106,6 +107,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             }
         }
         
+        //Determines letters that are present in word but in incorrect location, also assigns color to keyboard color dictionary for future updating
         for i in 0...4 {
             if testWordPlaceholder.contains(userGuess[i]) && guessColors[i] != K.Colors.correctLocation {
                 guessColors[i] = K.Colors.incorrectLocation
@@ -122,6 +124,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             }
         }
         
+        //Assigns color to keyboard color dictionary for letters not present in word for future updating
         for i in 0...4 {
             if(WordleDataModel.keyboardColors[userGuess[i]] != K.Colors.correctLocation) {
                 if(WordleDataModel.keyboardColors[userGuess[i]] != K.Colors.incorrectLocation) {
@@ -130,6 +133,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             }
         }
         
+        //Assigns colors to each letter in guess row - XXXXX make into function like updateKeyboardColors()
         for i in 0...4 {
             currentGuessTextFieldCollection[i].backgroundColor = guessColors[i]
         }
@@ -155,11 +159,50 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 gameOverTextFieldLock()
                 let message = "Sorry, you could not guess \(testWord!.wordText!.uppercased())"
                 gameOverAlert(with: message)
+                
+                //Update account level stats to show loss - XXXXX Put into function
+                var totalPlayed = UserDefaults.standard.integer(forKey: "TotalGamesPlayed")
+                var currentStreak = UserDefaults.standard.integer(forKey: "CurrentWinStreak")
+                var maxStreak = UserDefaults.standard.integer(forKey: "MaxWinStreak")
+                
+                if(currentStreak > maxStreak) {
+                    maxStreak = currentStreak
+                    UserDefaults.standard.set(maxStreak, forKey: "MaxWinStreak")
+                }
+                currentStreak = 0
+                UserDefaults.standard.set(currentStreak, forKey: "CurrentWinStreak")
+                
+                totalPlayed += 1
+                UserDefaults.standard.set(totalPlayed, forKey: "TotalGamesPlayed")
+                
+                saveContext()
             }
         } else {
+            //Update stats associated with specific word
             testWord?.guessed = true
             testWord?.numberOfGuesses = Int16(guessNum)
-            saveWords()
+            
+            //Update account level stats to show win - XXXXX Put into function
+            var totalPlayed = UserDefaults.standard.integer(forKey: "TotalGamesPlayed")
+            var totalWins = UserDefaults.standard.integer(forKey: "TotalGamesWon")
+            var currentStreak = UserDefaults.standard.integer(forKey: "CurrentWinStreak")
+            var maxStreak = UserDefaults.standard.integer(forKey: "MaxWinStreak")
+            
+            currentStreak += 1
+            UserDefaults.standard.set(currentStreak, forKey: "CurrentWinStreak")
+            
+            if(currentStreak > maxStreak) {
+                maxStreak = currentStreak
+                UserDefaults.standard.set(maxStreak, forKey: "MaxWinStreak")
+            }
+            
+            totalPlayed += 1
+            UserDefaults.standard.set(totalPlayed, forKey: "TotalGamesPlayed")
+            
+            totalWins += 1
+            UserDefaults.standard.set(totalWins, forKey: "TotalGamesWon")
+            
+            saveContext()
             gameOverTextFieldLock()
             var message = ""
             
@@ -308,27 +351,14 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             let currentSelection = letterKeyButtons[i]
             currentSelection.backgroundColor = WordleDataModel.keyboardColors[currentSelection.titleLabel!.text!]
             currentSelection.setTitleColor(.black, for: .normal)
-            
-//            if(currentSelection.backgroundColor == K.Colors.unusedLetter) {
-//                currentSelection.tintColor = UIColor.black
-//            } else {
-//                currentSelection.tintColor = UIColor.white
-//            }
         }
     }
     
     @IBAction func letterKeyPressed(_ sender: UIButton) {
         currentTextField?.becomeFirstResponder()
-        
-//        //If selected text field has a letter in it, move to next text field and replace value, then select next field, else replace value of currently selected field
-//        if(currentTextField?.text != "") {
-//            letterChanged(currentTextField!)
-//            currentTextField?.text = sender.titleLabel?.text
-//            letterChanged(currentTextField!)
-//        } else {
-            currentTextField?.text = sender.titleLabel?.text
-            letterChanged(currentTextField!)
-//        }
+
+        currentTextField?.text = sender.titleLabel?.text
+        letterChanged(currentTextField!)
     }
     
     @IBAction func deleteKeyPressed(_ sender: UIButton) {
@@ -378,7 +408,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             print("Word List Successfully accessed")
         }
 
-        saveWords()
+        saveContext()
     }
     
     //MARK: - User Statistics Functions
@@ -421,7 +451,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     }
     
     //MARK: - Model Manipulation Methods
-    func saveWords() {
+    func saveContext() {
         do {
             try context.save()
             print("Save successful")
