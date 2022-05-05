@@ -87,8 +87,9 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     func checkAnswer() {
         //Verifies that guess the user entered is a real word, if not guess is not submitted
         let userGuessString = userGuess.joined(separator: "").lowercased()
-        print(userGuessString)
-        if (!isCorrectWord(word: userGuessString)) {
+        
+        //Ensures that in the event iOS built in text checker does not recognize a word that is the current answer from the word list, it will still be correct
+        if (!isCorrectWord(word: userGuessString) && (userGuessString != testWord?.wordText?.lowercased())) {
             notAWordAlert()
             return
         }
