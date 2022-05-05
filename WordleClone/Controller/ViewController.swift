@@ -356,9 +356,30 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     
     @IBAction func letterKeyPressed(_ sender: UIButton) {
         currentTextField?.becomeFirstResponder()
-
-        currentTextField?.text = sender.titleLabel?.text
-        letterChanged(currentTextField!)
+        
+        //If the current text field has a letter but the next field is empty, do not overwrite the current text field and move to and fill in the letter in next text field
+        //If the current text field has a letter AND the next field does also, overwrite the current text field letter and move to the next text field
+        //If the current text field is the final text field in a particular guess, fill in the letter or overwrite if a letter is already in place
+        if (currentTextField?.text != "") {
+            if(currentTextField!.tag - (5 * (guessNum - 1)) - 1) < 4 {
+                if let nextTextField = self.view.viewWithTag(currentTextField!.tag + 1) as? DeleteTextField {
+                    if (nextTextField.text != "") {
+                        currentTextField?.text = sender.titleLabel?.text
+                        letterChanged(currentTextField!)
+                    } else if (nextTextField.text == "") {
+                        letterChanged(currentTextField!)
+                        currentTextField?.text = sender.titleLabel?.text
+                        letterChanged(currentTextField!)
+                    }
+                }
+            } else {
+                currentTextField?.text = sender.titleLabel?.text
+                letterChanged(currentTextField!)
+            }
+        }  else {
+            currentTextField?.text = sender.titleLabel?.text
+            letterChanged(currentTextField!)
+        }
     }
     
     @IBAction func deleteKeyPressed(_ sender: UIButton) {
