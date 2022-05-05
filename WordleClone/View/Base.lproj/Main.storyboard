@@ -752,6 +752,28 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="nSJ-Za-lPT">
+                                <rect key="frame" x="53.333333333333343" y="703" width="321.66666666666663" height="32"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVe-lY-8tb">
+                                        <rect key="frame" x="0.0" y="0.0" width="157.33333333333334" height="32"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Hint: Letter Present">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="incorrectLocationHintPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="evj-tU-u1X"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3q-ph-alF">
+                                        <rect key="frame" x="164.33333333333331" y="0.0" width="157.33333333333331" height="32"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Hint: Correct Place">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -763,8 +785,10 @@
                             <constraint firstItem="Vz0-Yh-3ds" firstAttribute="top" secondItem="vku-0w-AWC" secondAttribute="bottom" constant="8" id="7qF-hv-QoS"/>
                             <constraint firstItem="Wy4-ag-Fab" firstAttribute="top" secondItem="Vz0-Yh-3ds" secondAttribute="bottom" constant="8" id="9Iu-qi-lTb"/>
                             <constraint firstAttribute="trailing" secondItem="Wy4-ag-Fab" secondAttribute="trailing" constant="15" id="9Zc-qx-qDc"/>
+                            <constraint firstItem="nSJ-Za-lPT" firstAttribute="top" secondItem="Wy4-ag-Fab" secondAttribute="bottom" constant="20" id="PSJ-FW-bj6"/>
                             <constraint firstItem="Wy4-ag-Fab" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="Q7h-go-TjQ"/>
                             <constraint firstAttribute="trailing" secondItem="vku-0w-AWC" secondAttribute="trailing" constant="10" id="ai0-JI-l5O"/>
+                            <constraint firstItem="nSJ-Za-lPT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hyp-6p-FeP"/>
                             <constraint firstItem="vku-0w-AWC" firstAttribute="top" secondItem="sbp-se-rZp" secondAttribute="bottom" constant="28.670000000000002" id="iws-B7-4IJ"/>
                             <constraint firstAttribute="trailing" secondItem="Vz0-Yh-3ds" secondAttribute="trailing" constant="20" id="vdx-Xh-RT3"/>
                         </constraints>

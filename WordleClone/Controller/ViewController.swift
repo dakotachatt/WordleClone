@@ -21,6 +21,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     var testWord : Word? = nil
     var testWordArray : [String] = ["", "", "", "", ""]
     var userGuess : [String] = ["", "", "", "", ""]
+    var incorrectLocationHintsGiven : [Int] = []
     var guessColors : [UIColor] = [K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent]
     var currentGuessTextFieldCollection : [UITextField] = []
     var currentTextField : DeleteTextField?
@@ -82,6 +83,33 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         let incorrectRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
         
         return incorrectRange.location == NSNotFound
+    }
+    
+    //Marks the keyboard letter (one not already guessed) with a green color and correctly places it in the current guess
+    func correctLocationHint() {
+        
+    }
+    
+    //Marks the keyboard letter (one not already guessed) with a yellow color, does not place it in the current guess board
+    func incorrectLocationHint() {
+        //Not efficient as this runs through array each time hint button is pressed - though not noticeable to user with 5 letter words, XXXXXX change in future
+//        var randomLetterIndex : Int = Int.random(in: 0...4)
+//        var currentLetterColor = WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]]
+        
+        while(incorrectLocationHintsGiven.count < 5) {
+            let randomLetterIndex = Int.random(in: 0...4)
+            let currentLetterColor = WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]]
+            
+            if(currentLetterColor == K.Colors.incorrectLocation || currentLetterColor == K.Colors.correctLocation) {
+                if(!incorrectLocationHintsGiven.contains(randomLetterIndex)) {
+                    incorrectLocationHintsGiven.append(randomLetterIndex)
+                }
+            } else {
+                WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]] = K.Colors.incorrectLocation
+                updateKeyboardColors()
+                return
+            }
+        }
     }
     
     func checkAnswer() {
@@ -339,6 +367,8 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             WordleDataModel.keyboardColors[letter] = K.Colors.unusedLetter
         }
         
+        incorrectLocationHintsGiven = []
+        
         updateKeyboardColors()
         
         guessNum = 1
@@ -404,6 +434,9 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         }
     }
     
+    @IBAction func incorrectLocationHintPressed(_ sender: UIButton) {
+        incorrectLocationHint()
+    }
     
     
     //MARK: - Datasource loading - wordList.txt
