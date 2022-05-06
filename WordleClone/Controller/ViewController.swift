@@ -22,6 +22,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     var testWordArray : [String] = ["", "", "", "", ""]
     var userGuess : [String] = ["", "", "", "", ""]
     var incorrectLocationHintsGiven : [Int] = []
+    var correctLocationHintsGiven : [Int] = []
     var guessColors : [UIColor] = [K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent]
     var currentGuessTextFieldCollection : [UITextField] = []
     var currentTextField : DeleteTextField?
@@ -87,15 +88,39 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     
     //Marks the keyboard letter (one not already guessed) with a green color and correctly places it in the current guess
     func correctLocationHint() {
-        
+        while(correctLocationHintsGiven.count < 5) {
+            let randomLetterIndex = Int.random(in: 0...4)
+            let currentLetterColor = WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]]
+            
+            if(currentLetterColor == K.Colors.correctLocation) {
+                if(!correctLocationHintsGiven.contains(randomLetterIndex)) {
+                    correctLocationHintsGiven.append(randomLetterIndex)
+                }
+                
+                if(testWordArray.filter{$0 == testWordArray[randomLetterIndex]}.count > 1) {
+                    currentGuessTextFieldCollection[randomLetterIndex].text = testWordArray[randomLetterIndex]
+                    userGuess[randomLetterIndex] = testWordArray[randomLetterIndex]
+                    WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]] = K.Colors.correctLocation
+                    guessColors[randomLetterIndex] = K.Colors.correctLocation
+                    currentGuessTextFieldCollection[randomLetterIndex].backgroundColor = guessColors[randomLetterIndex]
+                    updateKeyboardColors()
+                    return
+                }
+            } else {
+                currentGuessTextFieldCollection[randomLetterIndex].text = testWordArray[randomLetterIndex]
+                userGuess[randomLetterIndex] = testWordArray[randomLetterIndex]
+                WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]] = K.Colors.correctLocation
+                guessColors[randomLetterIndex] = K.Colors.correctLocation
+                currentGuessTextFieldCollection[randomLetterIndex].backgroundColor = guessColors[randomLetterIndex]
+                updateKeyboardColors()
+                return
+            }
+        }
+
     }
     
     //Marks the keyboard letter (one not already guessed) with a yellow color, does not place it in the current guess board
     func incorrectLocationHint() {
-        //Not efficient as this runs through array each time hint button is pressed - though not noticeable to user with 5 letter words, XXXXXX change in future
-//        var randomLetterIndex : Int = Int.random(in: 0...4)
-//        var currentLetterColor = WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]]
-        
         while(incorrectLocationHintsGiven.count < 5) {
             let randomLetterIndex = Int.random(in: 0...4)
             let currentLetterColor = WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]]
@@ -368,6 +393,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         }
         
         incorrectLocationHintsGiven = []
+        correctLocationHintsGiven = []
         
         updateKeyboardColors()
         
@@ -415,6 +441,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     
     @IBAction func deleteKeyPressed(_ sender: UIButton) {
         currentTextField?.text = ""
+        currentTextField?.backgroundColor = UIColor.clear
         backwardDetected(textField: currentTextField!)
     }
     
@@ -437,6 +464,11 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     @IBAction func incorrectLocationHintPressed(_ sender: UIButton) {
         incorrectLocationHint()
     }
+    
+    @IBAction func correctLocationHintPressed(_ sender: UIButton) {
+        correctLocationHint()
+    }
+    
     
     
     //MARK: - Datasource loading - wordList.txt
