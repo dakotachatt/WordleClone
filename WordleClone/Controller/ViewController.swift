@@ -17,6 +17,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     @IBOutlet var guess5TextFields: [DeleteTextField]!
     @IBOutlet var guess6TextFields: [DeleteTextField]!
     @IBOutlet var letterKeyButtons: [UIButton]!
+    @IBOutlet weak var hintTokenLabel: UILabel!
     
     var testWord : Word? = nil
     var testWordArray : [String] = ["", "", "", "", ""]
