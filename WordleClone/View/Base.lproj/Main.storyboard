@@ -64,8 +64,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DhY-KF-Htt" userLabel="Round Over Popup">
+                                <rect key="frame" x="20" y="338" width="388" height="250"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="100Tokens" translatesAutoresizingMaskIntoConstraints="NO" id="2qM-E9-EUP">
+                                        <rect key="frame" x="74" y="61" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="7Ff-5w-D53"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jMo-ot-NNg" userLabel="Popup Background">
+                                <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jbh-AN-k7z" userLabel="Top Screen Bar">
-                                <rect key="frame" x="15" y="54" width="398" height="30"/>
+                                <rect key="frame" x="15" y="49" width="398" height="30"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5Q7-Vj-RTS" userLabel="Hint Tokens">
                                         <rect key="frame" x="0.0" y="0.0" width="126" height="30"/>
@@ -107,10 +124,10 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmb-uC-GhV" userLabel="Game Board Parent View">
-                                <rect key="frame" x="0.0" y="94" width="428" height="798"/>
+                                <rect key="frame" x="0.0" y="79" width="428" height="813"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="mwz-zS-nNP" userLabel="Game Board">
-                                        <rect key="frame" x="15" y="82" width="398" height="634.33333333333337"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="mwz-zS-nNP" userLabel="Game Board">
+                                        <rect key="frame" x="15" y="93.333333333333314" width="398" height="626.33333333333348"/>
                                         <subviews>
                                             <stackView opaque="NO" tag="-1" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sbp-se-rZp" userLabel="User Guesses">
                                                 <rect key="frame" x="54" y="0.0" width="290" height="378.33333333333331"/>
@@ -236,7 +253,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" tag="-1" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZBK-m0-g68" userLabel="guess3">
-                                                        <rect key="frame" x="0.0" y="123.6666666666667" width="290" height="57.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="123.66666666666667" width="290" height="57.666666666666671"/>
                                                         <subviews>
                                                             <textField opaque="NO" tag="11" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="eMk-t8-1ov" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
@@ -286,7 +303,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" tag="-1" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="s6c-j1-Lh5" userLabel="guess4">
-                                                        <rect key="frame" x="0.0" y="189.33333333333331" width="290" height="57.666666666666657"/>
+                                                        <rect key="frame" x="0.0" y="189.33333333333334" width="290" height="57.666666666666657"/>
                                                         <subviews>
                                                             <textField opaque="NO" tag="16" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="qzQ-Zx-EEb" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
@@ -386,7 +403,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" tag="-1" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1At-xC-Cps" userLabel="guess6">
-                                                        <rect key="frame" x="0.0" y="320.66666666666669" width="290" height="57.666666666666686"/>
+                                                        <rect key="frame" x="0.0" y="320.66666666666663" width="290" height="57.666666666666686"/>
                                                         <subviews>
                                                             <textField opaque="NO" tag="26" contentMode="scaleToFill" enabled="NO" highlighted="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="acr-84-AQJ" customClass="DeleteTextField" customModule="WordleClone" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="57.666666666666664"/>
@@ -438,7 +455,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="nSJ-Za-lPT" userLabel="Hint Buttons">
-                                                <rect key="frame" x="95.666666666666686" y="394.33333333333337" width="207" height="30"/>
+                                                <rect key="frame" x="95.666666666666686" y="392.33333333333326" width="207" height="30"/>
                                                 <subviews>
                                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVe-lY-8tb">
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
@@ -478,7 +495,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="vku-0w-AWC" userLabel="row1">
-                                                <rect key="frame" x="0.0" y="440.33333333333337" width="398" height="54"/>
+                                                <rect key="frame" x="0.0" y="436.33333333333326" width="398" height="54"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIs-cP-tiU">
                                                         <rect key="frame" x="0.0" y="0.0" width="35.333333333333336" height="54"/>
@@ -606,7 +623,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Vz0-Yh-3ds" userLabel="row2">
-                                                <rect key="frame" x="0.0" y="510.33333333333337" width="398" height="54"/>
+                                                <rect key="frame" x="0.0" y="504.33333333333326" width="398" height="54"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJR-yF-SwF">
                                                         <rect key="frame" x="0.0" y="0.0" width="39.666666666666664" height="54"/>
@@ -719,7 +736,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Wy4-ag-Fab" userLabel="row3">
-                                                <rect key="frame" x="0.0" y="580.33333333333337" width="398" height="54"/>
+                                                <rect key="frame" x="0.0" y="572.33333333333326" width="398" height="54"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Av-zp-j0w">
                                                         <rect key="frame" x="0.0" y="0.0" width="39.666666666666664" height="54"/>
@@ -843,73 +860,82 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="jMo-ot-NNg" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="bottom" constant="-926" id="4aT-9U-mtL"/>
+                            <constraint firstItem="jMo-ot-NNg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5Sj-hn-0xK"/>
+                            <constraint firstAttribute="trailing" secondItem="jMo-ot-NNg" secondAttribute="trailing" id="Bno-pZ-aCf"/>
                             <constraint firstAttribute="trailing" secondItem="jbh-AN-k7z" secondAttribute="trailing" constant="15" id="DH7-Yp-whd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DhY-KF-Htt" secondAttribute="trailing" constant="20" id="EOK-fA-rE4"/>
                             <constraint firstItem="jbh-AN-k7z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="Kg3-zD-kMd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Dmb-uC-GhV" secondAttribute="bottom" id="LVj-X7-aa9"/>
+                            <constraint firstAttribute="bottom" secondItem="jMo-ot-NNg" secondAttribute="bottom" id="Xyw-GG-25Q"/>
                             <constraint firstItem="Dmb-uC-GhV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Yaq-ji-SmR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Dmb-uC-GhV" secondAttribute="trailing" id="pi0-in-nS0"/>
-                            <constraint firstItem="Dmb-uC-GhV" firstAttribute="top" secondItem="jbh-AN-k7z" secondAttribute="bottom" constant="10" id="v9m-ZO-Hmj"/>
-                            <constraint firstItem="jbh-AN-k7z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="wuy-ch-7Vk"/>
+                            <constraint firstItem="DhY-KF-Htt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="uha-pv-IBV"/>
+                            <constraint firstItem="Dmb-uC-GhV" firstAttribute="top" secondItem="jbh-AN-k7z" secondAttribute="bottom" id="v9m-ZO-Hmj"/>
+                            <constraint firstItem="DhY-KF-Htt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="w2m-7D-STi"/>
+                            <constraint firstItem="jbh-AN-k7z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="wuy-ch-7Vk"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="hintTokenLabel" destination="u26-io-8IW" id="jnk-cT-HbA"/>
-                        <outletCollection property="guess5TextFields" destination="anx-iI-Wpg" collectionClass="NSMutableArray" id="jHJ-yZ-dbg"/>
+                        <outlet property="popupBackgroundView" destination="jMo-ot-NNg" id="pnv-lP-3MP"/>
+                        <outlet property="roundOverPopupView" destination="DhY-KF-Htt" id="ZUv-oT-fu6"/>
                         <outletCollection property="letterKeyButtons" destination="0bA-Tn-Trl" collectionClass="NSMutableArray" id="CHf-eq-mU5"/>
                         <outletCollection property="letterKeyButtons" destination="Twz-UV-Xza" collectionClass="NSMutableArray" id="hju-JM-jfo"/>
-                        <outletCollection property="guess2TextFields" destination="zgO-bu-aA7" collectionClass="NSMutableArray" id="abX-tp-NU2"/>
-                        <outletCollection property="guess6TextFields" destination="QRc-Je-N59" collectionClass="NSMutableArray" id="dNV-Gw-rG8"/>
                         <outletCollection property="letterKeyButtons" destination="cUc-ki-tJM" collectionClass="NSMutableArray" id="dX1-55-2Ow"/>
-                        <outletCollection property="guess2TextFields" destination="hzv-Sc-Xjy" collectionClass="NSMutableArray" id="GrI-Tf-MCy"/>
                         <outletCollection property="letterKeyButtons" destination="zmD-Uk-Wex" collectionClass="NSMutableArray" id="Ifu-Db-WMD"/>
                         <outletCollection property="letterKeyButtons" destination="7HO-6G-ggE" collectionClass="NSMutableArray" id="gv0-Kd-PCe"/>
                         <outletCollection property="letterKeyButtons" destination="EnR-Oc-Lno" collectionClass="NSMutableArray" id="vfU-Uz-0UV"/>
                         <outletCollection property="letterKeyButtons" destination="abH-iu-zTU" collectionClass="NSMutableArray" id="Yio-bb-6Ah"/>
                         <outletCollection property="letterKeyButtons" destination="gLb-9Y-yKq" collectionClass="NSMutableArray" id="7ZE-wJ-8Ih"/>
-                        <outletCollection property="guess6TextFields" destination="iDZ-Py-T6K" collectionClass="NSMutableArray" id="xIs-By-UzA"/>
-                        <outletCollection property="guess5TextFields" destination="WbC-s4-bEa" collectionClass="NSMutableArray" id="Exk-VU-Lec"/>
                         <outletCollection property="letterKeyButtons" destination="ccP-lO-jL1" collectionClass="NSMutableArray" id="RjM-z4-6NI"/>
                         <outletCollection property="letterKeyButtons" destination="AZG-c2-fqp" collectionClass="NSMutableArray" id="b7Q-mf-CfB"/>
-                        <outletCollection property="guess1TextFields" destination="ZVp-zL-DMB" collectionClass="NSMutableArray" id="Ucs-9R-zOO"/>
-                        <outletCollection property="guess1TextFields" destination="sZU-5a-2V9" collectionClass="NSMutableArray" id="ewu-UA-3Uh"/>
-                        <outletCollection property="guess3TextFields" destination="MPk-Nw-hx7" collectionClass="NSMutableArray" id="kMk-TD-2gF"/>
-                        <outletCollection property="guess3TextFields" destination="kPM-d7-32J" collectionClass="NSMutableArray" id="QOD-rF-6Df"/>
-                        <outletCollection property="guess5TextFields" destination="nSU-Re-9Pm" collectionClass="NSMutableArray" id="lhf-tw-e4x"/>
-                        <outletCollection property="guess5TextFields" destination="Jnd-jF-dUh" collectionClass="NSMutableArray" id="UwO-80-hQq"/>
                         <outletCollection property="letterKeyButtons" destination="hIs-cP-tiU" collectionClass="NSMutableArray" id="cb7-no-JXi"/>
-                        <outletCollection property="guess5TextFields" destination="AMU-Wd-mNd" collectionClass="NSMutableArray" id="ihb-8A-faa"/>
-                        <outletCollection property="guess6TextFields" destination="acr-84-AQJ" collectionClass="NSMutableArray" id="ZLY-co-gUR"/>
-                        <outletCollection property="guess6TextFields" destination="9Ce-O8-TM5" collectionClass="NSMutableArray" id="M1D-tD-eGD"/>
-                        <outletCollection property="guess4TextFields" destination="3jc-hr-cbt" collectionClass="NSMutableArray" id="QDJ-Sc-gdA"/>
-                        <outletCollection property="guess3TextFields" destination="qNW-ow-j5v" collectionClass="NSMutableArray" id="aZZ-Sp-pv5"/>
-                        <outletCollection property="guess2TextFields" destination="4He-Mr-YBX" collectionClass="NSMutableArray" id="zY4-IA-y0G"/>
-                        <outletCollection property="guess1TextFields" destination="fLh-nd-ZTs" collectionClass="NSMutableArray" id="81s-LW-Ls2"/>
-                        <outletCollection property="guess6TextFields" destination="fTC-i6-ti7" collectionClass="NSMutableArray" id="Pk8-8b-yMu"/>
-                        <outletCollection property="guess4TextFields" destination="DBe-cU-ZMK" collectionClass="NSMutableArray" id="YdD-Nk-JhC"/>
-                        <outletCollection property="guess2TextFields" destination="II4-bG-4SX" collectionClass="NSMutableArray" id="l69-Xw-lDg"/>
                         <outletCollection property="letterKeyButtons" destination="IJR-yF-SwF" collectionClass="NSMutableArray" id="gNB-nQ-960"/>
                         <outletCollection property="letterKeyButtons" destination="qnv-Es-fE2" collectionClass="NSMutableArray" id="FvF-DF-yib"/>
                         <outletCollection property="letterKeyButtons" destination="O07-bw-pyd" collectionClass="NSMutableArray" id="TYh-jR-u6E"/>
                         <outletCollection property="letterKeyButtons" destination="Alf-u2-6IZ" collectionClass="NSMutableArray" id="zMH-5T-UtO"/>
-                        <outletCollection property="guess3TextFields" destination="eMk-t8-1ov" collectionClass="NSMutableArray" id="1fS-hl-NCY"/>
                         <outletCollection property="letterKeyButtons" destination="pDy-zt-t7B" collectionClass="NSMutableArray" id="E1N-q5-U9S"/>
-                        <outletCollection property="guess1TextFields" destination="qDa-dU-vDl" collectionClass="NSMutableArray" id="lCe-s4-oiU"/>
-                        <outletCollection property="guess4TextFields" destination="qzQ-Zx-EEb" collectionClass="NSMutableArray" id="vPq-WI-eJf"/>
                         <outletCollection property="letterKeyButtons" destination="ceM-Ur-fQO" collectionClass="NSMutableArray" id="s2q-xL-kza"/>
-                        <outletCollection property="guess4TextFields" destination="LI9-R6-3sx" collectionClass="NSMutableArray" id="Zyu-6t-IWe"/>
                         <outletCollection property="letterKeyButtons" destination="rj2-fF-gjB" collectionClass="NSMutableArray" id="kTH-ZI-l1r"/>
                         <outletCollection property="letterKeyButtons" destination="ckH-TK-j4S" collectionClass="NSMutableArray" id="fum-UN-Vvx"/>
                         <outletCollection property="letterKeyButtons" destination="NF3-XL-BSV" collectionClass="NSMutableArray" id="4Mk-vY-hjq"/>
                         <outletCollection property="letterKeyButtons" destination="KWl-Ke-Vgc" collectionClass="NSMutableArray" id="IJa-Hx-pkb"/>
-                        <outletCollection property="guess4TextFields" destination="hqk-0b-NeD" collectionClass="NSMutableArray" id="Rzh-59-DVZ"/>
                         <outletCollection property="letterKeyButtons" destination="2w7-CD-OQW" collectionClass="NSMutableArray" id="NIa-Ze-2oq"/>
                         <outletCollection property="letterKeyButtons" destination="vPK-Ec-MzD" collectionClass="NSMutableArray" id="Y3U-EM-Tbk"/>
                         <outletCollection property="letterKeyButtons" destination="UEj-mr-QkL" collectionClass="NSMutableArray" id="tpZ-ww-Cqf"/>
-                        <outletCollection property="guess2TextFields" destination="R4s-h2-eAm" collectionClass="NSMutableArray" id="kWf-FY-COm"/>
                         <outletCollection property="letterKeyButtons" destination="dYv-Ro-Loc" collectionClass="NSMutableArray" id="xdj-sX-DLe"/>
-                        <outletCollection property="guess3TextFields" destination="0fM-LM-ROO" collectionClass="NSMutableArray" id="Tqh-k9-N2i"/>
                         <outletCollection property="letterKeyButtons" destination="vNw-ag-rgp" collectionClass="NSMutableArray" id="s3W-Vk-akd"/>
-                        <outletCollection property="guess1TextFields" destination="zE8-6r-cjg" collectionClass="NSMutableArray" id="fnn-4b-JDL"/>
+                        <outletCollection property="guess1TextFields" destination="fLh-nd-ZTs" collectionClass="NSMutableArray" id="iut-CL-ilJ"/>
+                        <outletCollection property="guess1TextFields" destination="zE8-6r-cjg" collectionClass="NSMutableArray" id="4vq-qt-atD"/>
+                        <outletCollection property="guess1TextFields" destination="ZVp-zL-DMB" collectionClass="NSMutableArray" id="utq-ut-8g0"/>
+                        <outletCollection property="guess1TextFields" destination="sZU-5a-2V9" collectionClass="NSMutableArray" id="Be9-jQ-Bxi"/>
+                        <outletCollection property="guess1TextFields" destination="qDa-dU-vDl" collectionClass="NSMutableArray" id="mCT-gy-nUb"/>
+                        <outletCollection property="guess2TextFields" destination="zgO-bu-aA7" collectionClass="NSMutableArray" id="JBd-cn-NMJ"/>
+                        <outletCollection property="guess2TextFields" destination="4He-Mr-YBX" collectionClass="NSMutableArray" id="xDK-rW-Rh8"/>
+                        <outletCollection property="guess2TextFields" destination="hzv-Sc-Xjy" collectionClass="NSMutableArray" id="yth-aZ-IE9"/>
+                        <outletCollection property="guess2TextFields" destination="II4-bG-4SX" collectionClass="NSMutableArray" id="hot-HL-vwP"/>
+                        <outletCollection property="guess2TextFields" destination="R4s-h2-eAm" collectionClass="NSMutableArray" id="hVd-zM-S7s"/>
+                        <outletCollection property="guess3TextFields" destination="eMk-t8-1ov" collectionClass="NSMutableArray" id="UlP-6S-esv"/>
+                        <outletCollection property="guess3TextFields" destination="qNW-ow-j5v" collectionClass="NSMutableArray" id="lt6-UC-35c"/>
+                        <outletCollection property="guess3TextFields" destination="MPk-Nw-hx7" collectionClass="NSMutableArray" id="ioC-pA-FT2"/>
+                        <outletCollection property="guess3TextFields" destination="0fM-LM-ROO" collectionClass="NSMutableArray" id="vq5-JM-95t"/>
+                        <outletCollection property="guess3TextFields" destination="kPM-d7-32J" collectionClass="NSMutableArray" id="kgs-ei-y4L"/>
+                        <outletCollection property="guess4TextFields" destination="qzQ-Zx-EEb" collectionClass="NSMutableArray" id="ggD-Mh-XfD"/>
+                        <outletCollection property="guess4TextFields" destination="3jc-hr-cbt" collectionClass="NSMutableArray" id="p2w-bL-BzH"/>
+                        <outletCollection property="guess4TextFields" destination="DBe-cU-ZMK" collectionClass="NSMutableArray" id="gEv-TO-N7U"/>
+                        <outletCollection property="guess4TextFields" destination="LI9-R6-3sx" collectionClass="NSMutableArray" id="UGp-uP-mlH"/>
+                        <outletCollection property="guess4TextFields" destination="hqk-0b-NeD" collectionClass="NSMutableArray" id="oII-sE-VJo"/>
+                        <outletCollection property="guess5TextFields" destination="nSU-Re-9Pm" collectionClass="NSMutableArray" id="Nb7-ul-RRa"/>
+                        <outletCollection property="guess5TextFields" destination="WbC-s4-bEa" collectionClass="NSMutableArray" id="4MA-bj-Dfx"/>
+                        <outletCollection property="guess5TextFields" destination="Jnd-jF-dUh" collectionClass="NSMutableArray" id="zh8-uY-SAo"/>
+                        <outletCollection property="guess5TextFields" destination="anx-iI-Wpg" collectionClass="NSMutableArray" id="kAi-4c-MC8"/>
+                        <outletCollection property="guess5TextFields" destination="AMU-Wd-mNd" collectionClass="NSMutableArray" id="cyf-IV-rmZ"/>
+                        <outletCollection property="guess6TextFields" destination="acr-84-AQJ" collectionClass="NSMutableArray" id="6s6-yT-mIl"/>
+                        <outletCollection property="guess6TextFields" destination="fTC-i6-ti7" collectionClass="NSMutableArray" id="2bh-Cr-54M"/>
+                        <outletCollection property="guess6TextFields" destination="9Ce-O8-TM5" collectionClass="NSMutableArray" id="a0W-Zb-yjg"/>
+                        <outletCollection property="guess6TextFields" destination="iDZ-Py-T6K" collectionClass="NSMutableArray" id="SsT-BI-Www"/>
+                        <outletCollection property="guess6TextFields" destination="QRc-Je-N59" collectionClass="NSMutableArray" id="BLg-dN-9qb"/>
                         <segue destination="lu7-71-Ug5" kind="presentation" identifier="goToStats" id="0Rn-VA-pmt"/>
                     </connections>
                 </viewController>
@@ -1185,6 +1211,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="100Tokens" width="6144" height="2048"/>
         <image name="WordleCorrectLocationHintButton" width="6144" height="2048"/>
         <image name="WordleIncorrectLocationHintButton" width="6144" height="2048"/>
         <image name="WordleToken" width="682.66668701171875" height="682.66668701171875"/>

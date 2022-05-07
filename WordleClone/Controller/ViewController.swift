@@ -18,6 +18,8 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     @IBOutlet var guess6TextFields: [DeleteTextField]!
     @IBOutlet var letterKeyButtons: [UIButton]!
     @IBOutlet weak var hintTokenLabel: UILabel!
+    @IBOutlet weak var popupBackgroundView: UIView!
+    @IBOutlet weak var roundOverPopupView: UIView!
     
     var testWord : Word? = nil
     var testWordArray : [String] = ["", "", "", "", ""]
@@ -88,26 +90,32 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     }
     
     //Marks the keyboard letter (one not already guessed) with a green color and correctly places it in the current guess
+    //Loops until all 5 unique indices have been obtained and appended to the correctLocationHintsGiven array
     func correctLocationHint() {
         while(correctLocationHintsGiven.count < 5) {
             let randomLetterIndex = Int.random(in: 0...4)
             let currentLetterColor = WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]]
             
+            //First block enables duplicate letters to be given as hints, while the second block is for words that haven't initially been hinted at
             if(currentLetterColor == K.Colors.correctLocation) {
+                if(!correctLocationHintsGiven.contains(randomLetterIndex)) {
+                    correctLocationHintsGiven.append(randomLetterIndex)
+                    
+                    if(testWordArray.filter{$0 == testWordArray[randomLetterIndex]}.count > 1) {
+                        currentGuessTextFieldCollection[randomLetterIndex].text = testWordArray[randomLetterIndex]
+                        userGuess[randomLetterIndex] = testWordArray[randomLetterIndex]
+                        WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]] = K.Colors.correctLocation
+                        guessColors[randomLetterIndex] = K.Colors.correctLocation
+                        currentGuessTextFieldCollection[randomLetterIndex].backgroundColor = guessColors[randomLetterIndex]
+                        updateKeyboardColors()
+                        return
+                    }
+                }
+            } else {
                 if(!correctLocationHintsGiven.contains(randomLetterIndex)) {
                     correctLocationHintsGiven.append(randomLetterIndex)
                 }
                 
-                if(testWordArray.filter{$0 == testWordArray[randomLetterIndex]}.count > 1) {
-                    currentGuessTextFieldCollection[randomLetterIndex].text = testWordArray[randomLetterIndex]
-                    userGuess[randomLetterIndex] = testWordArray[randomLetterIndex]
-                    WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]] = K.Colors.correctLocation
-                    guessColors[randomLetterIndex] = K.Colors.correctLocation
-                    currentGuessTextFieldCollection[randomLetterIndex].backgroundColor = guessColors[randomLetterIndex]
-                    updateKeyboardColors()
-                    return
-                }
-            } else {
                 currentGuessTextFieldCollection[randomLetterIndex].text = testWordArray[randomLetterIndex]
                 userGuess[randomLetterIndex] = testWordArray[randomLetterIndex]
                 WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]] = K.Colors.correctLocation
@@ -267,7 +275,9 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 message = "Congratulations! You guessed \(testWord!.wordText!.uppercased()) in \(guessNum) guesses!"
             }
             
-            gameOverAlert(with: message)
+            roundOverPopup(with: message)
+            
+//            gameOverAlert(with: message)
         }
     }
     
@@ -332,13 +342,26 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         }
     }
     
+    func roundOverPopup(with message: String) {
+        popupBackgroundView.isHidden = false
+        roundOverPopupView.isHidden = false
+        self.view.bringSubviewToFront(popupBackgroundView)
+        self.view.bringSubviewToFront(roundOverPopupView)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            self.popupBackgroundView.isHidden = true
+            self.roundOverPopupView.isHidden = true
+            self.restart()
+        }
+    }
+    
     func gameOverAlert(with message: String) {
         let alert = UIAlertController(title: "Round Over", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "One More", style: .default) { (action) in
             alert.dismiss(animated: true, completion: nil)
             self.restart()
         }
-        
+            
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
@@ -423,19 +446,23 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 if let nextTextField = self.view.viewWithTag(currentTextField!.tag + 1) as? DeleteTextField {
                     if (nextTextField.text != "") {
                         currentTextField?.text = sender.titleLabel?.text
+                        currentTextField?.backgroundColor = UIColor.clear
                         letterChanged(currentTextField!)
                     } else if (nextTextField.text == "") {
                         letterChanged(currentTextField!)
                         currentTextField?.text = sender.titleLabel?.text
+                        currentTextField?.backgroundColor = UIColor.clear
                         letterChanged(currentTextField!)
                     }
                 }
             } else {
                 currentTextField?.text = sender.titleLabel?.text
+                currentTextField?.backgroundColor = UIColor.clear
                 letterChanged(currentTextField!)
             }
         }  else {
             currentTextField?.text = sender.titleLabel?.text
+            currentTextField?.backgroundColor = UIColor.clear
             letterChanged(currentTextField!)
         }
     }
@@ -464,10 +491,12 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     
     @IBAction func incorrectLocationHintPressed(_ sender: UIButton) {
         incorrectLocationHint()
+        print("here's a letter")
     }
     
     @IBAction func correctLocationHintPressed(_ sender: UIButton) {
         correctLocationHint()
+        print("You pressed it")
     }
     
     
