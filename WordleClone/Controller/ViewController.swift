@@ -16,10 +16,26 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     @IBOutlet var guess4TextFields: [DeleteTextField]!
     @IBOutlet var guess5TextFields: [DeleteTextField]!
     @IBOutlet var guess6TextFields: [DeleteTextField]!
+    
+    //On screen keyboard buttons
     @IBOutlet var letterKeyButtons: [UIButton]!
+    
+    //Top bar labels
     @IBOutlet weak var hintTokenLabel: UILabel!
+    
+    //Round over popup IBOutlets
     @IBOutlet weak var popupBackgroundView: UIView!
     @IBOutlet weak var roundOverPopupView: UIView!
+    @IBOutlet weak var roundOverTitleLabel: UILabel!
+    @IBOutlet weak var roundOverTopMessageLabel: UILabel!
+    @IBOutlet weak var roundOverLetter1Label: UILabel!
+    @IBOutlet weak var roundOverLetter2Label: UILabel!
+    @IBOutlet weak var roundOverLetter3Label: UILabel!
+    @IBOutlet weak var roundOverLetter4Label: UILabel!
+    @IBOutlet weak var roundOverLetter5Label: UILabel!
+    @IBOutlet weak var roundOverBottomMessageLabel: UILabel!
+    @IBOutlet weak var roundOverTokenImageView: UIImageView!
+    
     
     var testWord : Word? = nil
     var testWordArray : [String] = ["", "", "", "", ""]
@@ -220,8 +236,8 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 startNextGuess()
             } else {
                 gameOverTextFieldLock()
-                let message = "Sorry, you could not guess \(testWord!.wordText!.uppercased())"
-                gameOverAlert(with: message)
+                roundOverPopupMessage(isCorrect: false)
+                roundOverPopupDisplay()
                 
                 //Update account level stats to show loss - XXXXX Put into function
                 var totalPlayed = UserDefaults.standard.integer(forKey: "TotalGamesPlayed")
@@ -267,17 +283,10 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             
             saveContext()
             gameOverTextFieldLock()
-            var message = ""
             
-            if(guessNum == 1) {
-                message = "Congratulations! You guessed \(testWord!.wordText!.uppercased()) on your first try!"
-            } else {
-                message = "Congratulations! You guessed \(testWord!.wordText!.uppercased()) in \(guessNum) guesses!"
-            }
-            
-            roundOverPopup(with: message)
-            
-//            gameOverAlert(with: message)
+            roundOverPopupMessage(isCorrect: true)
+            roundOverPopupDisplay()
+
         }
     }
     
@@ -342,13 +351,81 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         }
     }
     
-    func roundOverPopup(with message: String) {
+    func roundOverPopupMessage(isCorrect: Bool) {
+        if (isCorrect) {
+            if(guessNum > 1) {
+                roundOverTitleLabel.text = "You Did It!"
+            } else {
+                roundOverTitleLabel.text = "Lucky!"
+            }
+            
+            roundOverTopMessageLabel.text = "You Guessed"
+            
+            roundOverLetter1Label.text = testWordArray[0]
+            roundOverLetter2Label.text = testWordArray[1]
+            roundOverLetter3Label.text = testWordArray[2]
+            roundOverLetter4Label.text = testWordArray[3]
+            roundOverLetter5Label.text = testWordArray[4]
+            
+            if(guessNum > 1) {
+                roundOverBottomMessageLabel.text = "In \(guessNum) Guesses!"
+            } else {
+                roundOverBottomMessageLabel.text = "On Your First Try!"
+            }
+            
+            switch (guessNum) {
+            case 1:
+                roundOverTokenImageView.image = UIImage(named: "100Tokens.png")
+                break
+            case 2:
+                roundOverTokenImageView.image = UIImage(named: "25Tokens.png")
+                break
+            case 3:
+                roundOverTokenImageView.image = UIImage(named: "20Tokens.png")
+                break
+            case 4:
+                roundOverTokenImageView.image = UIImage(named: "15Tokens.png")
+                break
+            case 5:
+                roundOverTokenImageView.image = UIImage(named: "10Tokens.png")
+                break
+            case 6:
+                roundOverTokenImageView.image = UIImage(named: "5Tokens.png")
+                break
+            default:
+                break
+                
+            }
+        } else {
+            roundOverTitleLabel.text = "Uh-Oh!"
+            roundOverTopMessageLabel.text = "You Couldn't Guess"
+            
+            roundOverLetter1Label.text = testWordArray[0]
+            roundOverLetter2Label.text = testWordArray[1]
+            roundOverLetter3Label.text = testWordArray[2]
+            roundOverLetter4Label.text = testWordArray[3]
+            roundOverLetter5Label.text = testWordArray[4]
+            
+            roundOverBottomMessageLabel.text = "Better Luck Next Time!"
+            
+            roundOverTokenImageView.image = UIImage(named: "0Tokens.png")
+        }
+        
+        //Update colours in test word label stack in round over popup window
+        roundOverLetter1Label.backgroundColor = WordleDataModel.keyboardColors[testWordArray[0]]
+        roundOverLetter2Label.backgroundColor = WordleDataModel.keyboardColors[testWordArray[1]]
+        roundOverLetter3Label.backgroundColor = WordleDataModel.keyboardColors[testWordArray[2]]
+        roundOverLetter4Label.backgroundColor = WordleDataModel.keyboardColors[testWordArray[3]]
+        roundOverLetter5Label.backgroundColor = WordleDataModel.keyboardColors[testWordArray[4]]
+    }
+    
+    func roundOverPopupDisplay() {
         popupBackgroundView.isHidden = false
         roundOverPopupView.isHidden = false
         self.view.bringSubviewToFront(popupBackgroundView)
         self.view.bringSubviewToFront(roundOverPopupView)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.popupBackgroundView.isHidden = true
             self.roundOverPopupView.isHidden = true
             self.restart()
