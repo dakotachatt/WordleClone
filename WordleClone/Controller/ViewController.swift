@@ -463,12 +463,6 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             self.popupBackgroundView.alpha = 0.5
             self.roundOverPopupView.alpha = 1
         }, completion: nil)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            self.popupBackgroundView.isHidden = true
-            self.roundOverPopupView.isHidden = true
-            self.restart()
-        }
     }
     
     func roundOverTokenDistribution(numOfGuesses: Int) {
@@ -532,10 +526,21 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         refreshHintTokenLabel()
         loadTestWord()
         startNextGuess()
+        
+        self.popupBackgroundView.isHidden = true
+        self.roundOverPopupView.isHidden = true
     }
     
     func refreshHintTokenLabel() {
         hintTokenLabel.text = String(UserDefaults.standard.integer(forKey: "HintTokens"))
+    }
+    
+    @IBAction func playAgainButtonPressed(_ sender: UIButton) {
+        restart()
+    }
+    
+    @IBAction func homeButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "unwindToMainMenu", sender: self)
     }
     
     //MARK: - On Screen Keyboard Functions
