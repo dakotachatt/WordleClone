@@ -55,6 +55,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateKeyboardColors()
+        hintTokenLabel.text = String(UserDefaults.standard.integer(forKey: "HintTokens"))
         
         //Set Delegates
         for i in 0...4 {
@@ -172,6 +173,11 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             return
         }
         
+        //Ensures fields cannot be edited while guess check animation is running
+        for i in 0...4 {
+            currentGuessTextFieldCollection[i].isEnabled = false
+        }
+        
         guessColors = [K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent, K.Colors.letterNotPresent]
         var testWordPlaceholder = testWordArray
         
@@ -211,14 +217,13 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 }
             }
         }
-        
-        //Assigns colors to each letter in guess row - XXXXX make into function like updateKeyboardColors()
-        for i in 0...4 {
-            currentGuessTextFieldCollection[i].backgroundColor = guessColors[i]
-        }
-        
+                
+        guessAnimationAndRoundContinuation()
         updateKeyboardColors()
-        
+    }
+    
+    //Determines whether to move to next guess or if round is over (win or lose)
+    func continueRound() {
         //Used to track whether all letters in a given guess are correct or not - ends game if true after all letters looped through
         var correctLetterCount = 0
         
@@ -286,6 +291,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             
             roundOverPopupMessage(isCorrect: true)
             roundOverPopupDisplay()
+            roundOverTokenDistribution(numOfGuesses: guessNum)
 
         }
     }
@@ -348,6 +354,29 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         default:
             print("Error: NextGuess Function, guessNum not between 2-6")
             break
+        }
+    }
+    
+    func guessAnimationAndRoundContinuation() {
+        var currentLetterIndex = 0
+        
+        //Resets the guess letter background color to clear prior to animating them based on their actual color
+        for i in 0...4 {
+            currentGuessTextFieldCollection[i].backgroundColor = UIColor.clear
+        }
+        
+        currentGuessTextFieldCollection[currentLetterIndex].backgroundColor = self.guessColors[currentLetterIndex]
+
+        Timer.scheduledTimer(withTimeInterval: 0.3, repeats: true) { (timer) in
+            currentLetterIndex += 1
+            
+            if(currentLetterIndex > 4) {
+                self.continueRound()
+                timer.invalidate()
+                return
+            }
+            
+            self.currentGuessTextFieldCollection[currentLetterIndex].backgroundColor = self.guessColors[currentLetterIndex]
         }
     }
     
@@ -422,8 +451,15 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     func roundOverPopupDisplay() {
         popupBackgroundView.isHidden = false
         roundOverPopupView.isHidden = false
+        roundOverPopupView.alpha = 0
+        popupBackgroundView.alpha = 0
         self.view.bringSubviewToFront(popupBackgroundView)
         self.view.bringSubviewToFront(roundOverPopupView)
+        
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            self.popupBackgroundView.alpha = 0.5
+            self.roundOverPopupView.alpha = 1
+        }, completion: nil)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             self.popupBackgroundView.isHidden = true
@@ -432,15 +468,16 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         }
     }
     
-    func gameOverAlert(with message: String) {
-        let alert = UIAlertController(title: "Round Over", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "One More", style: .default) { (action) in
-            alert.dismiss(animated: true, completion: nil)
-            self.restart()
+    func roundOverTokenDistribution(numOfGuesses: Int) {
+        var totalTokens = UserDefaults.standard.integer(forKey: "HintTokens")
+        
+        if (numOfGuesses == 1) {
+            totalTokens += 100
+            UserDefaults.standard.set(totalTokens, forKey: "HintTokens")
+        } else if (numOfGuesses <= 6 && numOfGuesses > 1) {
+            totalTokens += (25 - 5 * (numOfGuesses - 2))
+            UserDefaults.standard.set(totalTokens, forKey: "HintTokens")
         }
-            
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
     }
     
     func missingLetterAlert() {
@@ -499,6 +536,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         updateKeyboardColors()
         
         guessNum = 1
+        hintTokenLabel.text = String(UserDefaults.standard.integer(forKey: "HintTokens"))
         loadTestWord()
         startNextGuess()
     }
@@ -518,51 +556,57 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         //If the current text field has a letter but the next field is empty, do not overwrite the current text field and move to and fill in the letter in next text field
         //If the current text field has a letter AND the next field does also, overwrite the current text field letter and move to the next text field
         //If the current text field is the final text field in a particular guess, fill in the letter or overwrite if a letter is already in place
-        if (currentTextField?.text != "") {
-            if(currentTextField!.tag - (5 * (guessNum - 1)) - 1) < 4 {
-                if let nextTextField = self.view.viewWithTag(currentTextField!.tag + 1) as? DeleteTextField {
-                    if (nextTextField.text != "") {
-                        currentTextField?.text = sender.titleLabel?.text
-                        currentTextField?.backgroundColor = UIColor.clear
-                        letterChanged(currentTextField!)
-                    } else if (nextTextField.text == "") {
-                        letterChanged(currentTextField!)
-                        currentTextField?.text = sender.titleLabel?.text
-                        currentTextField?.backgroundColor = UIColor.clear
-                        letterChanged(currentTextField!)
+        if (currentTextField!.isEnabled) {
+            if (currentTextField!.text != "") {
+                if(currentTextField!.tag - (5 * (guessNum - 1)) - 1) < 4 {
+                    if let nextTextField = self.view.viewWithTag(currentTextField!.tag + 1) as? DeleteTextField {
+                        if (nextTextField.text != "") {
+                            currentTextField?.text = sender.titleLabel?.text
+                            currentTextField?.backgroundColor = UIColor.clear
+                            letterChanged(currentTextField!)
+                        } else if (nextTextField.text == "") {
+                            letterChanged(currentTextField!)
+                            currentTextField?.text = sender.titleLabel?.text
+                            currentTextField?.backgroundColor = UIColor.clear
+                            letterChanged(currentTextField!)
+                        }
                     }
+                } else {
+                    currentTextField?.text = sender.titleLabel?.text
+                    currentTextField?.backgroundColor = UIColor.clear
+                    letterChanged(currentTextField!)
                 }
-            } else {
+            }  else {
                 currentTextField?.text = sender.titleLabel?.text
                 currentTextField?.backgroundColor = UIColor.clear
                 letterChanged(currentTextField!)
             }
-        }  else {
-            currentTextField?.text = sender.titleLabel?.text
-            currentTextField?.backgroundColor = UIColor.clear
-            letterChanged(currentTextField!)
         }
     }
     
     @IBAction func deleteKeyPressed(_ sender: UIButton) {
-        currentTextField?.text = ""
-        currentTextField?.backgroundColor = UIColor.clear
-        backwardDetected(textField: currentTextField!)
+        if(currentTextField!.isEnabled) {
+            currentTextField?.text = ""
+            currentTextField?.backgroundColor = UIColor.clear
+            backwardDetected(textField: currentTextField!)
+        }
     }
     
     @IBAction func submitKeyPressed(_ sender: UIButton) {
-        var noFieldsBlank = true
-        
-        for i in 0...4 {
-            if(currentGuessTextFieldCollection[i].text! == "" || currentGuessTextFieldCollection[i].text! == " ") {
-                noFieldsBlank = false
+        if(currentTextField!.isEnabled) {
+            var noFieldsBlank = true
+            
+            for i in 0...4 {
+                if(currentGuessTextFieldCollection[i].text! == "" || currentGuessTextFieldCollection[i].text! == " ") {
+                    noFieldsBlank = false
+                }
             }
-        }
-        
-        if(noFieldsBlank) {
-            checkAnswer()
-        } else {
-            missingLetterAlert()
+            
+            if(noFieldsBlank) {
+                checkAnswer()
+            } else {
+                missingLetterAlert()
+            }
         }
     }
     
