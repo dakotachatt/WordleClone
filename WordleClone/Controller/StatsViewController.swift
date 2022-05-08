@@ -100,13 +100,28 @@ class StatsViewController: UIViewController {
                 }
             }
             
-            oneGuessBar.setProgress((oneGuess / Float(totalWins)), animated: true)
-            twoGuessBar.setProgress((twoGuess / Float(totalWins)), animated: true)
-            threeGuessBar.setProgress((threeGuess / Float(totalWins)), animated: true)
-            fourGuessBar.setProgress((fourGuess / Float(totalWins)), animated: true)
-            fiveGuessBar.setProgress((fiveGuess / Float(totalWins)), animated: true)
-            sixGuessBar.setProgress((sixGuess / Float(totalWins)), animated: true)
-            averageGuessLabel.text = String(format: "%.1f", guessSum / Float(totalWins))
+            if(totalWins > 0) {
+                oneGuessBar.setProgress((oneGuess / Float(totalWins)), animated: true)
+                twoGuessBar.setProgress((twoGuess / Float(totalWins)), animated: true)
+                threeGuessBar.setProgress((threeGuess / Float(totalWins)), animated: true)
+                fourGuessBar.setProgress((fourGuess / Float(totalWins)), animated: true)
+                fiveGuessBar.setProgress((fiveGuess / Float(totalWins)), animated: true)
+                sixGuessBar.setProgress((sixGuess / Float(totalWins)), animated: true)
+            } else {
+                oneGuessBar.setProgress(0, animated: true)
+                twoGuessBar.setProgress(0, animated: true)
+                threeGuessBar.setProgress(0, animated: true)
+                fourGuessBar.setProgress(0, animated: true)
+                fiveGuessBar.setProgress(0, animated: true)
+                sixGuessBar.setProgress(0, animated: true)
+            }
+
+            if(totalPlayed > 0) {
+                averageGuessLabel.text = String(format: "%.1f", guessSum / Float(totalWins))
+            } else {
+                averageGuessLabel.text = "-"
+            }
+
         } catch {
             print("Error retrieving guessed word stats: \(error)")
         }

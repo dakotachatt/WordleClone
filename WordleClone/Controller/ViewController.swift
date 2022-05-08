@@ -89,6 +89,8 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             print("Initial Data Loaded")
             loadWordData()
             UserDefaults.standard.set(true, forKey: "WordListLoaded")
+            UserDefaults.standard.set(500, forKey: "HintTokens")
+            refreshHintTokenLabel()
         }
         
         loadTestWord()
