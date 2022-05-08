@@ -55,7 +55,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateKeyboardColors()
-        hintTokenLabel.text = String(UserDefaults.standard.integer(forKey: "HintTokens"))
+        refreshHintTokenLabel()
         
         //Set Delegates
         for i in 0...4 {
@@ -108,7 +108,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     
     //Marks the keyboard letter (one not already guessed) with a green color and correctly places it in the current guess
     //Loops until all 5 unique indices have been obtained and appended to the correctLocationHintsGiven array
-    func correctLocationHint() {
+    func correctLocationHint() -> Bool {
         while(correctLocationHintsGiven.count < 5) {
             let randomLetterIndex = Int.random(in: 0...4)
             let currentLetterColor = WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]]
@@ -125,7 +125,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                         guessColors[randomLetterIndex] = K.Colors.correctLocation
                         currentGuessTextFieldCollection[randomLetterIndex].backgroundColor = guessColors[randomLetterIndex]
                         updateKeyboardColors()
-                        return
+                        return true
                     }
                 }
             } else {
@@ -139,14 +139,15 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 guessColors[randomLetterIndex] = K.Colors.correctLocation
                 currentGuessTextFieldCollection[randomLetterIndex].backgroundColor = guessColors[randomLetterIndex]
                 updateKeyboardColors()
-                return
+                return true
             }
         }
-
+        
+        return false
     }
     
     //Marks the keyboard letter (one not already guessed) with a yellow color, does not place it in the current guess board
-    func incorrectLocationHint() {
+    func incorrectLocationHint() -> Bool {
         while(incorrectLocationHintsGiven.count < 5) {
             let randomLetterIndex = Int.random(in: 0...4)
             let currentLetterColor = WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]]
@@ -158,9 +159,11 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             } else {
                 WordleDataModel.keyboardColors[testWordArray[randomLetterIndex]] = K.Colors.incorrectLocation
                 updateKeyboardColors()
-                return
+                return true
             }
         }
+        
+        return false
     }
     
     func checkAnswer() {
@@ -169,7 +172,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         
         //Ensures that in the event iOS built in text checker does not recognize a word that is the current answer from the word list, it will still be correct
         if (!isCorrectWord(word: userGuessString) && (userGuessString != testWord?.wordText?.lowercased())) {
-            notAWordAlert()
+            errorAlert("You did not enter a real word")
             return
         }
         
@@ -219,7 +222,6 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         }
                 
         guessAnimationAndRoundContinuation()
-        updateKeyboardColors()
     }
     
     //Determines whether to move to next guess or if round is over (win or lose)
@@ -292,8 +294,9 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             roundOverPopupMessage(isCorrect: true)
             roundOverPopupDisplay()
             roundOverTokenDistribution(numOfGuesses: guessNum)
-
         }
+        
+        updateKeyboardColors()
     }
     
     func startNextGuess() {
@@ -388,7 +391,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
                 roundOverTitleLabel.text = "Lucky!"
             }
             
-            roundOverTopMessageLabel.text = "You Guessed"
+            roundOverTopMessageLabel.text = "You guessed"
             
             roundOverLetter1Label.text = testWordArray[0]
             roundOverLetter2Label.text = testWordArray[1]
@@ -397,9 +400,9 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             roundOverLetter5Label.text = testWordArray[4]
             
             if(guessNum > 1) {
-                roundOverBottomMessageLabel.text = "In \(guessNum) Guesses!"
+                roundOverBottomMessageLabel.text = "in \(guessNum) guesses!"
             } else {
-                roundOverBottomMessageLabel.text = "On Your First Try!"
+                roundOverBottomMessageLabel.text = "on your first try!"
             }
             
             switch (guessNum) {
@@ -427,7 +430,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             }
         } else {
             roundOverTitleLabel.text = "Uh-Oh!"
-            roundOverTopMessageLabel.text = "You Couldn't Guess"
+            roundOverTopMessageLabel.text = "You couldn't guess"
             
             roundOverLetter1Label.text = testWordArray[0]
             roundOverLetter2Label.text = testWordArray[1]
@@ -461,7 +464,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             self.roundOverPopupView.alpha = 1
         }, completion: nil)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             self.popupBackgroundView.isHidden = true
             self.roundOverPopupView.isHidden = true
             self.restart()
@@ -480,19 +483,9 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         }
     }
     
-    func missingLetterAlert() {
-        let alert = UIAlertController(title: "Incomplete", message: "All letters must be filled in", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Okay", style: .default) { (action) in
-            alert.dismiss(animated: true, completion: nil)
-        }
-        
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func notAWordAlert() {
-        let alert = UIAlertController(title: "Not a Word", message: "You did not enter a real word", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Okay", style: .default) { (action) in
+    func errorAlert(_ message: String) {
+        let alert = UIAlertController(title: "Uh-Oh", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default) { (action) in
             alert.dismiss(animated: true, completion: nil)
         }
         
@@ -536,9 +529,13 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         updateKeyboardColors()
         
         guessNum = 1
-        hintTokenLabel.text = String(UserDefaults.standard.integer(forKey: "HintTokens"))
+        refreshHintTokenLabel()
         loadTestWord()
         startNextGuess()
+    }
+    
+    func refreshHintTokenLabel() {
+        hintTokenLabel.text = String(UserDefaults.standard.integer(forKey: "HintTokens"))
     }
     
     //MARK: - On Screen Keyboard Functions
@@ -605,22 +602,42 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             if(noFieldsBlank) {
                 checkAnswer()
             } else {
-                missingLetterAlert()
+                errorAlert("All letters must be filled in")
             }
         }
     }
     
     @IBAction func incorrectLocationHintPressed(_ sender: UIButton) {
-        incorrectLocationHint()
-        print("here's a letter")
+        var currentTokens = UserDefaults.standard.integer(forKey: "HintTokens")
+        
+        if(currentTokens >= 50) {
+            let isValidHint = incorrectLocationHint()
+            if(isValidHint) {
+                UserDefaults.standard.set(currentTokens - 50, forKey: "HintTokens")
+                refreshHintTokenLabel()
+            } else {
+                errorAlert("All letters have been found!")
+            }
+        } else {
+            errorAlert("Not enough tokens!")
+        }
     }
     
     @IBAction func correctLocationHintPressed(_ sender: UIButton) {
-        correctLocationHint()
-        print("You pressed it")
+        var currentTokens = UserDefaults.standard.integer(forKey: "HintTokens")
+        
+        if(currentTokens >= 100) {
+            let isValidHint = correctLocationHint()
+            if (isValidHint) {
+                UserDefaults.standard.set(currentTokens - 100, forKey: "HintTokens")
+                refreshHintTokenLabel()
+            } else {
+                errorAlert("All letters and locations have been found!")
+            }
+        } else {
+            errorAlert("Not enough tokens!")
+        }
     }
-    
-    
     
     //MARK: - Datasource loading - wordList.txt
     //Loads the initial words list from wordList.txt into the CoreData Word entity, used only on first run on device
@@ -751,7 +768,7 @@ extension ViewController: UITextFieldDelegate {
         if(noFieldsBlank) {
             checkAnswer()
         } else {
-            missingLetterAlert()
+            errorAlert("All letters must be filled in")
         }
         return false
     }
