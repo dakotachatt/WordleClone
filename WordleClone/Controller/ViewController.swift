@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 import CoreData
 
 class ViewController: UIViewController, DeleteTextFieldDelegate {
@@ -46,6 +47,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     var currentGuessTextFieldCollection : [UITextField] = []
     var currentTextField : DeleteTextField?
     var guessNum = 1
+    var soundPlayer: AVAudioPlayer!
     
     //To detect if word list has been loaded into memory initially and does not require re-loading
     let isWordListLoaded = UserDefaults.standard.bool(forKey: "WordListLoaded")
@@ -244,7 +246,6 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             } else {
                 gameOverTextFieldLock()
                 roundOverPopupMessage(isCorrect: false)
-                roundOverPopupDisplay()
                 
                 //Update account level stats to show loss - XXXXX Put into function
                 var totalPlayed = UserDefaults.standard.integer(forKey: "TotalGamesPlayed")
@@ -292,7 +293,6 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             gameOverTextFieldLock()
             
             roundOverPopupMessage(isCorrect: true)
-            roundOverPopupDisplay()
             roundOverTokenDistribution(numOfGuesses: guessNum)
         }
         
@@ -438,7 +438,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             roundOverLetter4Label.text = testWordArray[3]
             roundOverLetter5Label.text = testWordArray[4]
             
-            roundOverBottomMessageLabel.text = "Better Luck Next Time!"
+            roundOverBottomMessageLabel.text = "Better luck next time!"
             
             roundOverTokenImageView.image = UIImage(named: "0Tokens.png")
         }
@@ -449,6 +449,13 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         roundOverLetter3Label.backgroundColor = WordleDataModel.keyboardColors[testWordArray[2]]
         roundOverLetter4Label.backgroundColor = WordleDataModel.keyboardColors[testWordArray[3]]
         roundOverLetter5Label.backgroundColor = WordleDataModel.keyboardColors[testWordArray[4]]
+        
+        roundOverPopupDisplay()
+        if(isCorrect) {
+            playSound(sound: "roundWon")
+        } else {
+            playSound(sound: "roundLost")
+        }
     }
     
     func roundOverPopupDisplay() {
@@ -477,6 +484,13 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         }
     }
     
+    func playSound(sound: String) {
+        let url = Bundle.main.url(forResource: sound, withExtension: "wav")
+            
+        soundPlayer = try! AVAudioPlayer(contentsOf: url!)
+        soundPlayer.play()
+    }
+    
     func errorAlert(_ message: String) {
         let alert = UIAlertController(title: "Uh-Oh", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -485,6 +499,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
         
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
+        playSound(sound: "error")
     }
     
     func gameOverTextFieldLock() {
@@ -540,6 +555,13 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
     }
     
     @IBAction func homeButtonPressed(_ sender: UIButton) {
+        for i in 0..<letterKeyButtons.count {
+            let currentSelection = letterKeyButtons[i]
+            WordleDataModel.keyboardColors[currentSelection.titleLabel!.text!] = K.Colors.unusedLetter
+            currentSelection.backgroundColor = WordleDataModel.keyboardColors[currentSelection.titleLabel!.text!]
+            currentSelection.setTitleColor(.black, for: .normal)
+        }
+        
         performSegue(withIdentifier: "unwindToMainMenu", sender: self)
     }
     
@@ -619,6 +641,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             let isValidHint = incorrectLocationHint()
             if(isValidHint) {
                 UserDefaults.standard.set(currentTokens - 50, forKey: "HintTokens")
+                playSound(sound: "hintUsed")
                 refreshHintTokenLabel()
             } else {
                 errorAlert("All letters have been found!")
@@ -635,6 +658,7 @@ class ViewController: UIViewController, DeleteTextFieldDelegate {
             let isValidHint = correctLocationHint()
             if (isValidHint) {
                 UserDefaults.standard.set(currentTokens - 100, forKey: "HintTokens")
+                playSound(sound: "hintUsed")
                 refreshHintTokenLabel()
             } else {
                 errorAlert("All letters and locations have been found!")

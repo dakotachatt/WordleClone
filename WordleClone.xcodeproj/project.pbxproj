@@ -13,6 +13,10 @@
 		1D1CC9E127EE25D5007C55DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1CC9DF27EE25D5007C55DD /* Main.storyboard */; };
 		1D1CC9E627EE25D6007C55DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D1CC9E527EE25D6007C55DD /* Assets.xcassets */; };
 		1D1CC9E927EE25D6007C55DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D1CC9E727EE25D6007C55DD /* LaunchScreen.storyboard */; };
+		1D236D732828792000E7ADBD /* hintUsed.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1D236D722828792000E7ADBD /* hintUsed.wav */; };
+		1D236D7528287A5A00E7ADBD /* roundLost.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1D236D7428287A5A00E7ADBD /* roundLost.wav */; };
+		1D236D7728287BA400E7ADBD /* roundWon.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1D236D7628287BA400E7ADBD /* roundWon.wav */; };
+		1D236D7928287CD900E7ADBD /* error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1D236D7828287CD900E7ADBD /* error.wav */; };
 		1D25F56227F79FB500E9BBF5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D25F56127F79FB500E9BBF5 /* MainViewController.swift */; };
 		1D25F56427F7A8CE00E9BBF5 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D25F56327F7A8CE00E9BBF5 /* StatsViewController.swift */; };
 		1D25F56627F7B96000E9BBF5 /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D25F56527F7B96000E9BBF5 /* K.swift */; };
@@ -31,6 +35,10 @@
 		1D1CC9E527EE25D6007C55DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D1CC9E827EE25D6007C55DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D1CC9EA27EE25D6007C55DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D236D722828792000E7ADBD /* hintUsed.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hintUsed.wav; sourceTree = "<group>"; };
+		1D236D7428287A5A00E7ADBD /* roundLost.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = roundLost.wav; sourceTree = "<group>"; };
+		1D236D7628287BA400E7ADBD /* roundWon.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = roundWon.wav; sourceTree = "<group>"; };
+		1D236D7828287CD900E7ADBD /* error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = error.wav; sourceTree = "<group>"; };
 		1D25F56127F79FB500E9BBF5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		1D25F56327F7A8CE00E9BBF5 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		1D25F56527F7B96000E9BBF5 /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
@@ -72,6 +80,7 @@
 		1D1CC9D827EE25D5007C55DD /* WordleClone */ = {
 			isa = PBXGroup;
 			children = (
+				1D236D71282877FA00E7ADBD /* Sounds */,
 				1D1CC9F227EE2875007C55DD /* Model */,
 				1D1CC9D927EE25D5007C55DD /* AppDelegate.swift */,
 				1D1CC9DB27EE25D5007C55DD /* SceneDelegate.swift */,
@@ -110,6 +119,17 @@
 				1DC5ECEF282089A2006EAD4F /* WordleDataModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1D236D71282877FA00E7ADBD /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				1D236D7828287CD900E7ADBD /* error.wav */,
+				1D236D7628287BA400E7ADBD /* roundWon.wav */,
+				1D236D7428287A5A00E7ADBD /* roundLost.wav */,
+				1D236D722828792000E7ADBD /* hintUsed.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,10 +190,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D236D7728287BA400E7ADBD /* roundWon.wav in Resources */,
 				1D1CC9E927EE25D6007C55DD /* LaunchScreen.storyboard in Resources */,
 				1D1CC9E627EE25D6007C55DD /* Assets.xcassets in Resources */,
+				1D236D732828792000E7ADBD /* hintUsed.wav in Resources */,
+				1D236D7528287A5A00E7ADBD /* roundLost.wav in Resources */,
 				1D3D1E1627F38D8B004229BC /* wordList.txt in Resources */,
 				1D1CC9E127EE25D5007C55DD /* Main.storyboard in Resources */,
+				1D236D7928287CD900E7ADBD /* error.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
